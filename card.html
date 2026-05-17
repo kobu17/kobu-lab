@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>行動心理カードセッション｜こぶさんの人づくりラボ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yamabuki: #E8A020;
+            --yamabuki-deep: #C47A10;
+            --yamabuki-light: #F5C060;
+            --yamabuki-pale: #FDF3E0;
+            --white: #ffffff;
+            --text-dark: #2a2015;
+            --text-mid: #6b5020;
+            --text-light: #a07840;
+            --border: #f0d090;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; font-size: 16px; color: var(--text-dark); background: var(--white); line-height: 1.8; }
+
+        /* ===== HEADER ===== */
+        header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .logo-wrap { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+        .logo-main { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); letter-spacing: 0.05em; }
+        .logo-main em { font-style: normal; color: var(--yamabuki); }
+        .logo-sub { font-size: 9px; color: var(--text-light); letter-spacing: 0.14em; }
+        .back-btn { font-size: 13px; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+        .back-btn:hover { background: var(--yamabuki-pale); color: var(--yamabuki-deep); }
+
+        /* ===== HERO ===== */
+        .hero { margin-top: 70px; display: flex; min-height: 500px; }
+        .hero-photo { width: 50%; position: relative; overflow: hidden; }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .hero-text { width: 50%; background: var(--yamabuki-pale); padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(232,160,32,0.15); border: 1px solid var(--border); border-radius: 3px; padding: 5px 12px; margin-bottom: 20px; width: fit-content; }
+        .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yamabuki); }
+        .hero-badge span { font-size: 11px; color: var(--text-mid); letter-spacing: 0.06em; }
+        .hero-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 16px; }
+        .hero-title em { font-style: normal; color: var(--yamabuki-deep); }
+        .hero-sub { font-size: 15px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .btn-line { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 14px 28px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-line:hover { opacity: 0.88; }
+
+        /* ===== SECTIONS ===== */
+        .section { padding: 80px 32px; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 12px; text-align: center; }
+        .section-sub { font-size: 15px; color: var(--text-mid); text-align: center; line-height: 1.9; margin-bottom: 48px; }
+        .bg-white { background: var(--white); }
+        .bg-pale { background: var(--yamabuki-pale); }
+
+        /* ===== こんな方に ===== */
+        .osusume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .osusume-item { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 12px; }
+        .osusume-icon { font-size: 20px; flex-shrink: 0; }
+        .osusume-text { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+
+        /* ===== 得られること ===== */
+        .benefit-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .benefit-card { background: var(--white); border: 0.5px solid var(--yamabuki-light); border-radius: 12px; padding: 28px; }
+        .benefit-icon { font-size: 32px; margin-bottom: 12px; }
+        .benefit-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 10px; }
+        .benefit-card p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== セッションの流れ ===== */
+        .flow-steps { display: flex; flex-direction: column; gap: 0; max-width: 700px; margin: 0 auto; }
+        .flow-step { display: flex; gap: 24px; align-items: flex-start; position: relative; padding-bottom: 32px; }
+        .flow-step:last-child { padding-bottom: 0; }
+        .flow-step:not(:last-child)::after { content: ''; position: absolute; left: 23px; top: 48px; width: 2px; height: calc(100% - 48px); background: var(--border); }
+        .flow-num { width: 48px; height: 48px; border-radius: 50%; background: var(--yamabuki); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+        .flow-body { flex: 1; padding-top: 10px; }
+        .flow-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .flow-body p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== 料金 ===== */
+        .price-box { background: var(--white); border: 2px solid var(--yamabuki); border-radius: 16px; padding: 48px; text-align: center; max-width: 500px; margin: 0 auto; }
+        .price-label { font-size: 13px; color: var(--text-light); letter-spacing: 0.08em; margin-bottom: 8px; }
+        .price-num { font-family: 'Noto Serif JP', serif; font-size: 56px; font-weight: 700; color: var(--yamabuki-deep); line-height: 1; margin-bottom: 8px; }
+        .price-num span { font-size: 20px; }
+        .price-info { font-size: 13px; color: var(--text-light); margin-bottom: 24px; line-height: 1.8; }
+        .price-note { font-size: 12px; color: var(--text-light); margin-top: 16px; }
+
+        /* ===== ラボ生の声 ===== */
+        .voice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .voice-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px; }
+        .voice-tag { display: inline-block; font-size: 11px; background: var(--yamabuki-pale); color: var(--yamabuki-deep); border-radius: 3px; padding: 2px 8px; margin-bottom: 12px; }
+        .voice-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.6; }
+        .voice-card p { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 12px; }
+        .voice-author { font-size: 12px; color: var(--text-light); text-align: right; }
+
+        /* ===== メッセージ ===== */
+        .message-wrap { display: flex; gap: 48px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
+        .message-photo { width: 200px; flex-shrink: 0; }
+        .message-photo img { width: 100%; height: 240px; object-fit: cover; object-position: center top; border-radius: 8px; }
+        .message-body { flex: 1; }
+        .message-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+        .message-role { font-size: 12px; color: var(--yamabuki-deep); margin-bottom: 20px; }
+        .message-body p { font-size: 15px; color: var(--text-mid); line-height: 2.2; margin-bottom: 16px; }
+
+        /* ===== 署名セクション ===== */
+        .sign-section { background: var(--white); padding: 32px; text-align: center; }
+        .sign-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; }
+
+        /* ===== CTA ===== */
+        .cta-section { background: var(--yamabuki-pale); padding: 80px 32px; text-align: center; }
+        .cta-main { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.6; }
+        .cta-sub { font-size: 16px; color: var(--text-mid); margin-bottom: 24px; }
+        .cta-desc { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .cta-note { font-size: 11px; color: var(--text-light); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--yamabuki); padding: 32px; text-align: center; }
+        .footer-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; }
+            .hero-photo { width: 100%; height: 300px; }
+            .hero-text { width: 100%; padding: 40px 20px; }
+            .hero-title { font-size: 22px; }
+            .osusume-grid { grid-template-columns: 1fr; }
+            .benefit-cards { grid-template-columns: 1fr; }
+            .voice-cards { grid-template-columns: 1fr; }
+            .message-wrap { flex-direction: column; }
+            .message-photo { width: 100%; }
+            .sign-inner { flex-direction: column; gap: 20px; }
+            .section { padding: 60px 20px; }
+            .price-box { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html" class="logo-wrap">
+        <div class="logo-main"><em>こぶさん</em>の人づくりラボ</div>
+        <div class="logo-sub">KOBU'S PEOPLE LAB</div>
+    </a>
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> トップへ戻る
+    </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-photo">
+        <img src="images/mk025.jpg" alt="行動心理カードセッション">
+    </div>
+    <div class="hero-text">
+        <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>個人セッション｜完全1対1</span>
+        </div>
+        <h1 class="hero-title">あなたの中にある<br><em>「答え」</em>を、<br>カードが引き出す。</h1>
+        <p class="hero-sub">
+            気づいていなかった行動心理・潜在意識が<br>
+            一瞬にして視覚化される。<br>
+            行動心理カードセッション。
+        </p>
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            LINEでお問い合わせ・予約する
+        </a>
+    </div>
+</div>
+
+<!-- こんな方に -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">こんな方におすすめです</h2>
+        <p class="section-sub">自分自身のことをもっと深く知りたい方へ。</p>
+        <div class="osusume-grid">
+            <div class="osusume-item">
+                <div class="osusume-icon">🎯</div>
+                <div class="osusume-text">目標はあるのに、なぜか行動できない</div>
+            </div>
+            <div class="osusume-item">
+                <div class="osusume-icon">🔍</div>
+                <div class="osusume-text">自分の本当の欲求・強みがわからない</div>
+            </div>
+            <div class="osusume-item">
+                <div class="osusume-icon">🧠</div>
+                <div class="osusume-text">思考の癖や無意識のブレーキに気づきたい</div>
+            </div>
+            <div class="osusume-item">
+                <div class="osusume-icon">✨</div>
+                <div class="osusume-text">自分の力をフルに発揮できるようになりたい</div>
+            </div>
+            <div class="osusume-item">
+                <div class="osusume-icon">👨‍👩‍👧</div>
+                <div class="osusume-text">子育てや人間関係でモヤモヤを感じている</div>
+            </div>
+            <div class="osusume-item">
+                <div class="osusume-icon">⚽</div>
+                <div class="osusume-text">指導者として自分らしいコーチングを見つけたい</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 得られること -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">セッションで得られること</h2>
+        <p class="section-sub">カードが、あなたの中にある答えを引き出します。</p>
+        <div class="benefit-cards">
+            <div class="benefit-card">
+                <div class="benefit-icon">💡</div>
+                <div class="benefit-title">潜在意識の視覚化</div>
+                <p>今まで気づいていなかった自分の行動心理や潜在意識が、一瞬にして視覚化されます。「なぜあの時そう行動したのか」が、驚くほど明確になります。</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🔓</div>
+                <div class="benefit-title">ブレーキの変換</div>
+                <p>今まで自分の可能性を阻んでいたブレーキを発見し、それをプラスのエネルギーに変換します。「できない」が「できる」に変わる瞬間を体験してください。</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <div class="benefit-title">目標達成の加速</div>
+                <p>行動心理を読み解くことで、目標達成の後押しになります。頭でわかっているのに動けなかったあなたが、自然と行動できるようになります。</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💪</div>
+                <div class="benefit-title">本来の力を発揮</div>
+                <p>自分の力をフルに活かせる自分になります。あなたの中にもともとある可能性・強み・才能を、最大限に引き出します。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- セッションの流れ -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">セッションの流れ</h2>
+        <p class="section-sub">シンプルだからこそ、深く届く。</p>
+        <div class="flow-steps">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <div class="flow-body">
+                    <div class="flow-title">カードの質問と選択肢を読む</div>
+                    <p>こぶさんがカードに書かれた質問と選択肢を読み上げます。難しいことは何もありません。ただ、正直に自分の感覚と向き合ってください。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <div class="flow-body">
+                    <div class="flow-title">最もあてはまる選択肢を選ぶ</div>
+                    <p>深く考えすぎず、直感で選んでください。あなたの無意識が、正直に答えを選んでいます。</p>
+                </div>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <div class="flow-body">
+                    <div class="flow-title">全カード終了後、まとめをお伝えする</div>
+                    <p>全てのカードが終わったら、こぶさんがあなたの行動心理・潜在意識をまとめてお伝えします。「そうか、だからあの時…」という気づきの瞬間が訪れます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 料金 -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">料金</h2>
+        <p class="section-sub">あなたの人生を変える60分への投資。</p>
+        <div class="price-box">
+            <div class="price-label">行動心理カードセッション</div>
+            <div class="price-num">15,000<span>円</span></div>
+            <div class="price-info">
+                60分・完全1対1・オンライン（Zoom）or 対面<br>
+                ※対面の場合は別途交通費をご相談ください
+            </div>
+            <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line" style="justify-content: center;">
+                <i class="fa-brands fa-line"></i>
+                LINEでお問い合わせ・予約する
+            </a>
+            <div class="price-note">ご予約はLINEにてお受けしています。<br>お気軽にメッセージをお送りください。</div>
+        </div>
+    </div>
+</section>
+
+<!-- ラボ生の声 -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">セッションを受けた方の声</h2>
+        <p class="section-sub">一瞬にして気づきが訪れた体験をご覧ください。</p>
+        <div class="voice-cards">
+            <div class="voice-card">
+                <div class="voice-tag">【行動心理カードセッション】</div>
+                <div class="voice-title">自分でも気づいていなかったブレーキが見えた</div>
+                <p>「方法論ではなく、根っこの部分にアプローチしたくて参加しました。『本当はいやなのに、望まない方へ自ら進んでしまう癖』に気づき、切り替えられるようになりました。今この瞬間の状況に一喜一憂せず、その先にあるビジョンに目を向けられるようになりました。」</p>
+                <div class="voice-author">（30代・女性）</div>
+            </div>
+            <div class="voice-card">
+                <div class="voice-tag">【行動心理カードセッション】</div>
+                <div class="voice-title">迷ってる人の背景が理解できるようになった</div>
+                <p>セッションを受けて、自分自身の行動パターンが明確になりました。それと同時に、子どもや選手が「なぜそう動くのか」という背景も理解できるようになり、声かけが根本から変わりました。</p>
+                <div class="voice-author">（40代・サッカーコーチ）</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- こぶさんからのメッセージ -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title" style="margin-bottom: 40px;">こぶさんからのメッセージ</h2>
+        <div class="message-wrap">
+            <div class="message-photo">
+                <img src="images/mk001.jpg" alt="こぶさん">
+            </div>
+            <div class="message-body">
+                <div class="message-name">小鮒 正樹（こぶ）</div>
+                <div class="message-role">人づくりラボ代表｜魔法の声かけコーチ</div>
+                <p>人は誰でも、自分の中に無限の可能性を持っています。でも多くの場合、自分でも気づいていない「ブレーキ」がその可能性を阻んでいます。</p>
+                <p>行動心理カードは、そのブレーキを一瞬にして視覚化します。「なぜあの時うまくいかなかったのか」「なぜ頑張っているのに結果が出ないのか」の答えが、カードの中にあります。</p>
+                <p>子育て中のお母さんも、指導者も、まず自分自身を深く知ることが全ての始まりです。一緒に、あなたの中にある答えを見つけましょう。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 署名セクション -->
+<div class="sign-section">
+    <div class="sign-inner">
+        <img src="images/sign_name.jpg" alt="署名" style="height: 80px; object-fit: contain; mix-blend-mode: multiply;">
+        <img src="images/sign_auto.jpg" alt="サイン" style="height: 60px; object-fit: contain; mix-blend-mode: multiply;">
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="cta-main">あなたの中にある答えを、<br>一緒に見つけましょう。</h2>
+    <p class="cta-sub">まずはLINEでお気軽にご相談ください。</p>
+    <p class="cta-desc">
+        ご予約・お問い合わせはLINEにてお受けしています。<br>
+        気になることは何でもお聞きください。
+    </p>
+    <div class="cta-btn-wrap">
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            LINEでお問い合わせ・予約する
+        </a>
+        <span class="cta-note">登録無料・いつでも解除できます。</span>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="footer-text">© 2026 こぶさんの人づくりラボ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

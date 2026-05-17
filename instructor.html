@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指導者サポート｜こぶさんの人づくりラボ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yamabuki: #E8A020;
+            --yamabuki-deep: #C47A10;
+            --yamabuki-light: #F5C060;
+            --yamabuki-pale: #FDF3E0;
+            --white: #ffffff;
+            --text-dark: #2a2015;
+            --text-mid: #6b5020;
+            --text-light: #a07840;
+            --border: #f0d090;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; font-size: 16px; color: var(--text-dark); background: var(--white); line-height: 1.8; }
+
+        /* ===== HEADER ===== */
+        header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .logo-wrap { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+        .logo-main { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); letter-spacing: 0.05em; }
+        .logo-main em { font-style: normal; color: var(--yamabuki); }
+        .logo-sub { font-size: 9px; color: var(--text-light); letter-spacing: 0.14em; }
+        .back-btn { font-size: 13px; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+        .back-btn:hover { background: var(--yamabuki-pale); color: var(--yamabuki-deep); }
+
+        /* ===== HERO ===== */
+        .hero { margin-top: 70px; display: flex; min-height: 500px; }
+        .hero-photo { width: 50%; position: relative; overflow: hidden; }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .hero-text { width: 50%; background: var(--yamabuki-pale); padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(232,160,32,0.15); border: 1px solid var(--border); border-radius: 3px; padding: 5px 12px; margin-bottom: 20px; width: fit-content; }
+        .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yamabuki); }
+        .hero-badge span { font-size: 11px; color: var(--text-mid); letter-spacing: 0.06em; }
+        .hero-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 16px; }
+        .hero-title em { font-style: normal; color: var(--yamabuki-deep); }
+        .hero-sub { font-size: 15px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .btn-line { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 14px 28px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-line:hover { opacity: 0.88; }
+
+        /* ===== SECTIONS ===== */
+        .section { padding: 80px 32px; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 12px; text-align: center; }
+        .section-sub { font-size: 15px; color: var(--text-mid); text-align: center; line-height: 1.9; margin-bottom: 48px; }
+        .bg-white { background: var(--white); }
+        .bg-pale { background: var(--yamabuki-pale); }
+
+        /* ===== 悩みセクション ===== */
+        .nayami-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+        .nayami-item { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 12px; }
+        .nayami-icon { font-size: 20px; flex-shrink: 0; }
+        .nayami-text { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+        .nayami-message { background: var(--white); border-left: 3px solid var(--yamabuki); border-radius: 4px; padding: 28px 32px; }
+        .nayami-message p { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--text-dark); line-height: 2.2; margin-bottom: 16px; }
+        .nayami-message p:last-child { margin-bottom: 0; }
+        .nayami-message strong { color: var(--yamabuki-deep); font-weight: 700; }
+
+        /* ===== 3つのカギ ===== */
+        .key-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .key-card { background: var(--white); border: 0.5px solid var(--yamabuki-light); border-radius: 12px; padding: 28px; }
+        .key-icon { font-size: 28px; margin-bottom: 12px; }
+        .key-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 6px; }
+        .key-sub { font-size: 12px; color: var(--yamabuki); margin-bottom: 12px; font-weight: 500; }
+        .key-card p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== サポートメニュー ===== */
+        .course-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .course-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .course-card.featured { border: 2px solid var(--yamabuki); position: relative; }
+        .course-badge { position: absolute; top: -1px; right: 20px; background: var(--yamabuki); color: var(--white); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 0 0 6px 6px; letter-spacing: 0.04em; }
+        .course-header { background: var(--yamabuki-pale); padding: 24px; text-align: center; border-bottom: 0.5px solid var(--border); }
+        .course-header.featured-header { background: var(--yamabuki); }
+        .course-header.featured-header .course-name { color: var(--white); }
+        .course-header.featured-header .course-sub { color: rgba(255,255,255,0.85); }
+        .course-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 8px; line-height: 1.6; }
+        .course-sub { font-size: 12px; color: var(--text-mid); line-height: 1.7; }
+        .course-body { padding: 28px; }
+        .course-desc { font-size: 14px; color: var(--text-mid); line-height: 1.9; margin-bottom: 20px; }
+        .course-features { list-style: none; margin-bottom: 20px; }
+        .course-features li { font-size: 14px; color: var(--text-mid); padding: 8px 0; border-bottom: 0.5px solid #f8f0e0; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
+        .course-features li:last-child { border-bottom: none; }
+        .course-features li::before { content: '✓'; color: var(--yamabuki); flex-shrink: 0; font-weight: 700; }
+        .course-info { font-size: 13px; color: var(--text-light); margin-bottom: 20px; line-height: 1.8; }
+        .course-curriculum { margin-bottom: 20px; }
+        .course-curriculum-title { font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 10px; }
+        .course-curriculum li { font-size: 13px; color: var(--text-mid); padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; display: flex; gap: 8px; }
+        .course-curriculum li:last-child { border-bottom: none; }
+        .curriculum-month { color: var(--yamabuki-deep); font-weight: 500; flex-shrink: 0; }
+        .btn-course-line { display: block; text-align: center; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 12px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-course-line:hover { opacity: 0.88; }
+        .btn-course { display: block; text-align: center; background: var(--yamabuki); color: var(--white); border: none; border-radius: 3px; padding: 12px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-course:hover { background: var(--yamabuki-deep); }
+
+        /* ===== 選ばれる理由 ===== */
+        .reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .reason { padding: 32px 24px; background: var(--white); border-radius: 12px; border: 0.5px solid var(--border); }
+        .reason-num { font-family: 'Noto Serif JP', serif; font-size: 11px; color: var(--yamabuki); letter-spacing: 0.1em; margin-bottom: 8px; }
+        .reason-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 12px; line-height: 1.6; }
+        .reason p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== ラボ生の声 ===== */
+        .voice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .voice-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px; }
+        .voice-tag { display: inline-block; font-size: 11px; background: var(--yamabuki-pale); color: var(--yamabuki-deep); border-radius: 3px; padding: 2px 8px; margin-bottom: 12px; }
+        .voice-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.6; }
+        .voice-card p { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 12px; }
+        .voice-author { font-size: 12px; color: var(--text-light); text-align: right; }
+
+        /* ===== メッセージ ===== */
+        .message-wrap { display: flex; gap: 48px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
+        .message-photo { width: 200px; flex-shrink: 0; }
+        .message-photo img { width: 100%; height: 240px; object-fit: cover; object-position: center top; border-radius: 8px; }
+        .message-body { flex: 1; }
+        .message-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+        .message-role { font-size: 12px; color: var(--yamabuki-deep); margin-bottom: 20px; }
+        .message-heading { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; line-height: 1.7; }
+        .message-body p { font-size: 15px; color: var(--text-mid); line-height: 2.2; margin-bottom: 16px; }
+
+        /* ===== 署名セクション ===== */
+        .sign-section { background: var(--white); padding: 32px; text-align: center; }
+        .sign-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; }
+
+        /* ===== CTA ===== */
+        .cta-section { background: var(--yamabuki-pale); padding: 80px 32px; text-align: center; }
+        .cta-main { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.6; }
+        .cta-sub { font-size: 16px; color: var(--text-mid); margin-bottom: 24px; }
+        .cta-desc { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .cta-note { font-size: 11px; color: var(--text-light); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--yamabuki); padding: 32px; text-align: center; }
+        .footer-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; }
+            .hero-photo { width: 100%; height: 300px; }
+            .hero-text { width: 100%; padding: 40px 20px; }
+            .hero-title { font-size: 22px; }
+            .nayami-grid { grid-template-columns: 1fr; }
+            .key-cards { grid-template-columns: 1fr; }
+            .course-cards { grid-template-columns: 1fr; }
+            .reasons { grid-template-columns: 1fr; }
+            .voice-cards { grid-template-columns: 1fr; }
+            .message-wrap { flex-direction: column; }
+            .message-photo { width: 100%; }
+            .sign-inner { flex-direction: column; gap: 20px; }
+            .section { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html" class="logo-wrap">
+        <div class="logo-main"><em>こぶさん</em>の人づくりラボ</div>
+        <div class="logo-sub">KOBU'S PEOPLE LAB</div>
+    </a>
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> トップへ戻る
+    </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-photo">
+        <img src="images/mk021.jpg" alt="指導者サポート">
+    </div>
+    <div class="hero-text">
+        <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>脳科学 × 心理学 × 30年のコーチ経験</span>
+        </div>
+        <h1 class="hero-title">「勝たせる」指導から、<em>「育つ」</em>指導へ。<br>チームの勝利は、<br>コーチの成長から始まる。</h1>
+        <p class="hero-sub">
+            根性論や指示命令の時代は終わりました。<br>
+            30年・3,000人の現場経験と脳科学・心理学で、<br>
+            選手が主体的に動き出すチームをつくる。
+        </p>
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            1dayセミナーの先行案内を受け取る
+        </a>
+    </div>
+</div>
+
+<!-- 悩みセクション -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">こんな悩み、ピッチで感じたことはありませんか？</h2>
+        <p class="section-sub">情熱はある。でも、なぜかうまくいかない。<br>そのモヤモヤ、一緒に解決しましょう。</p>
+        <div class="nayami-grid">
+            <div class="nayami-item">
+                <div class="nayami-icon">😤</div>
+                <div class="nayami-text">選手が話を聞かない。何度言っても変わらない。</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">😔</div>
+                <div class="nayami-text">思い通りにいかなくて、つい怒鳴ってしまう。</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">😰</div>
+                <div class="nayami-text">指示を出さないと動けない「指示待ち選手」ばかり。</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">⚖️</div>
+                <div class="nayami-text">勝ちに行くべきか、育成を優先すべきか。板挟みで悩む毎日。</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">🤔</div>
+                <div class="nayami-text">今の時代に合った指導方法がわからない。</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">👪</div>
+                <div class="nayami-text">保護者との関係構築が難しい。</div>
+            </div>
+        </div>
+        <div class="nayami-message">
+            <p>30年前、私もベンチから叫び続けていました。<br>
+            3,000人以上の子どもたちと向き合い、失敗を繰り返してたどり着いた答えがあります。</p>
+            <p>根性論や指示命令を卒業し、選手が主体的に動き出す<strong>「魔法の声かけ」</strong>と<strong>「環境設計」</strong>。</p>
+            <p>コーチが叫ぶのをやめたとき、選手たちは「自分たちのサッカー」を楽しみ、驚くような成長を遂げ始めます。<br>
+            「指導」を「育成」へ。あなたも、選手が勝手に育つチーム作りの第一歩を踏み出しませんか？</p>
+        </div>
+    </div>
+</section>
+
+<!-- 3つのカギ -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">「勝手に育つチーム」を作る<br>3つのカギ</h2>
+        <p class="section-sub">6ヶ月講座を支える、3つの柱</p>
+        <div class="key-cards">
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ1：ポジショニングの真実</div>
+                <div class="key-sub">【教えないからこそ、見える景色がある】</div>
+                <p>「教える」から「気づく」へ。思考の土台を作る。単なる「立ち位置」の指示ではありません。選手が「なぜそこに立つのか」という原理原則を理解し、ピッチ上で自らの脳で判断するための「認知力」を育てます。</p>
+            </div>
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ2：成長マインドセットの伝播</div>
+                <div class="key-sub">【選手の主体性を爆発させる、言葉の魔法】</div>
+                <p>指導者自身が「失敗は成長の種」と確信し、選手のチャレンジを奪わない「我慢力」を身につけます。脳科学に基づいた「魔法の声かけ」を実践することで、選手の主体性を爆発させ、自ら成長し続ける組織文化を構築します。</p>
+            </div>
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ3：独自ゲームモデルの構築</div>
+                <div class="key-sub">【育成と勝利を両立する「北極星」】</div>
+                <p>世界基準の考え方をベースに、目の前の子どもたちのレベルに合った「戦い方の指針（ゲームモデル）」を作ります。コーチがいなくても選手同士で問題を解決できる組織を作ることで、育成を妥協せず、「勝手に勝てるチーム」へと進化させます。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- サポートメニュー -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">コーチが変われば、チームは変わる。</h2>
+        <p class="section-sub">まずは1dayセミナーで、その「答え」を体感してください。</p>
+        <div class="course-cards">
+            <div class="course-card featured">
+                <div class="course-badge">まずここから</div>
+                <div class="course-header featured-header">
+                    <div class="course-name">「育成」と「勝利」を両立できる指導者になる1dayセミナー</div>
+                    <div class="course-sub">リフティング50回できない子がリーグ戦1位になった秘密を大公開</div>
+                </div>
+                <div class="course-body">
+                    <p class="course-desc">脳科学・心理学に基づいた30年の現場経験から生まれた独自メソッドで、一人ひとりに合った指導スタイルと指導力アップ方法をお伝えします。</p>
+                    <ul class="course-features">
+                        <li>今の時代のサッカーコーチの新しい価値とは？</li>
+                        <li>選手タイプの見極め方と個別アプローチ方法</li>
+                        <li>個性的な選手をまとめる方法</li>
+                        <li>選手の成長スピードを上げるコツ</li>
+                        <li>ゲームモデルはどうやって作る？</li>
+                        <li>「なぜ伝わらないのか」の悩みを解決</li>
+                    </ul>
+                    <div class="course-info">
+                        時間：約3時間<br>
+                        参加費：公式LINE登録で割引あり！<br>
+                        日程：近日開催予定・LINEで先行案内
+                    </div>
+                    <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-course-line">
+                        <i class="fa-brands fa-line"></i> LINEに登録して無料参加する
+                    </a>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-name">世界基準のサッカーコーチ養成6ヶ月講座</div>
+                    <div class="course-sub">倉本和昌公認・認定講師</div>
+                </div>
+                <div class="course-body">
+                    <p class="course-desc">「チームの勝利＝コーチの成長」を主軸に、6ヶ月間で育成と勝利を両立できる指導者を目指します。</p>
+                    <p style="font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 8px;">こんな方におすすめ：</p>
+                    <ul class="course-features" style="margin-bottom: 16px;">
+                        <li>サッカーへの情熱は誰にも負けない！もっと指導力を上げたい</li>
+                        <li>今よりもっと選手を伸ばしたい</li>
+                        <li>チームの結果をもっと上につなげたい</li>
+                        <li>周りにサッカーの相談ができる人がいない</li>
+                    </ul>
+                    <ul class="course-curriculum" style="list-style: none;">
+                        <li style="display: flex; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">1ヶ月目</span>育成と勝利を両立するコーチとは</li>
+                        <li style="display: flex; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">2ヶ月目</span>ヨーロッパ基準の自分らしい戦略作り</li>
+                        <li style="display: flex; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">3ヶ月目</span>世界に通用する日本人コーチ像とは</li>
+                        <li style="display: flex; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">4ヶ月目</span>風の時代のコーチ像とビジョン構築</li>
+                        <li style="display: flex; gap: 8px; padding: 6px 0; border-bottom: 0.5px solid #f8f0e0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">5ヶ月目</span>自チームに合ったゲームモデルの作り方</li>
+                        <li style="display: flex; gap: 8px; padding: 6px 0; font-size: 13px; color: var(--text-mid);"><span class="curriculum-month">6ヶ月目</span>効果的なプレー原則と練習の作り方</li>
+                    </ul>
+                    <div class="course-info" style="margin-top: 16px;">
+                        期間：6ヶ月（月1回全6回）<br>
+                        料金：1dayセミナー参加者に特別案内
+                    </div>
+                    <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-course">
+                        まずは1dayセミナーに参加する →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 選ばれる理由 -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">全国の指導者からこぶさんが選ばれる<br>3つの理由</h2>
+        <p class="section-sub">「理論」×「現場」×「結果」の3つが揃っているから、強いのです。</p>
+        <div class="reasons">
+            <div class="reason">
+                <div class="reason-num">REASON 01</div>
+                <div class="reason-title">倉本和昌「公認・認定講師」としての世界基準の理論</div>
+                <p>スペインやJクラブアカデミーの最先端の指導法をベースに、脳科学・心理学に基づいた再現性の高いカリキュラムを提供します。単なる「個人の経験談」ではなく、どんなチーム、どんなカテゴリーにも応用可能な「原理原則」を学べます。</p>
+            </div>
+            <div class="reason">
+                <div class="reason-num">REASON 02</div>
+                <div class="reason-title">サッカーコーチ歴30年・3,000人以上を導いた現場の知恵</div>
+                <p>どれだけ素晴らしい理論でも、日本の町クラブや少年団のピッチで使えなければ意味がありません。30年以上現場に立ち続けたこぶさんだからこそ、「日本のリアルな現場」で本当に効果のある関わり方・動かし方を、泥臭く分かりやすくお伝えできます。</p>
+            </div>
+            <div class="reason">
+                <div class="reason-num">REASON 03</div>
+                <div class="reason-title">リフティング50回未満のチームをリーグ戦1位に導いた実績</div>
+                <p>技術的に劣る選手たちが集団として変革していく核心、「選手の自立を引き出すアプローチ」と「脳の特性に合わせた言葉選び」を直接伝授します。「教え込む指導」から卒業し、選手が勝手に動き出す指導をあなたのものにできます。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ラボ生の声 -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">ラボ生の声</h2>
+        <p class="section-sub">同じ悩みを抱えていた指導者たちの変化をご覧ください。</p>
+        <div class="voice-cards">
+            <div class="voice-card">
+                <div class="voice-tag">【1dayセミナー参加】</div>
+                <div class="voice-title">選手一人ひとりに合わせた指導ができるようになった</div>
+                <p>セミナーを受けて、選手には一人ひとり異なるタイプがあることを改めて実感しました。これまでは同じ声かけを全員にしていましたが、タイプ別のアプローチを意識するだけで選手のモチベーションが上がるきっかけになると確信しています。</p>
+                <div class="voice-author">（少年サッカーコーチ・３０代）</div>
+            </div>
+            <div class="voice-card">
+                <div class="voice-tag">【1dayセミナー参加】</div>
+                <div class="voice-title">選手との関係性が変わりそうです</div>
+                <p>今回学んだ内容を実践すれば、指導レベルが上がり、選手との関係性が確実に良くなると感じました。次はポジショニングとゲームモデルについても深く学んでいきたいです。</p>
+                <div class="voice-author">（少年サッカーコーチ・２０代）</div>
+            </div>
+            <div class="voice-card">
+                <div class="voice-tag">【6ヶ月講座受講】</div>
+                <div class="voice-title">選手が自分から動き出すようになった</div>
+                <p>講座を受ける前は、毎回同じ指示を繰り返すだけでした。でも6ヶ月間学んで、選手が自分で考えて動き出す瞬間が増えてきました。指導が楽しくなりました。</p>
+                <div class="voice-author">（少年団コーチ・30代）</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- こぶさんからのメッセージ -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title" style="margin-bottom: 40px;">こぶさんからのメッセージ</h2>
+        <div class="message-wrap">
+            <div class="message-photo">
+                <img src="images/mk001.jpg" alt="こぶさん">
+            </div>
+            <div class="message-body">
+                <div class="message-name">小鮒 正樹（こぶ）</div>
+                <div class="message-role">人づくりラボ代表｜魔法の声かけコーチ</div>
+                <div class="message-heading">「あなたの成長が、選手の成長です。」<br>選手たちは、あなたの成長を待ってはくれません。</div>
+                <p>30年前、私もベンチから叫び続けていました。怒鳴れば動くと思っていた。指示すれば成長すると信じていた。</p>
+                <p>でも、違いました。</p>
+                <p>コーチである私が変わったとき、初めて選手が変わりました。私が学ぶのをやめた瞬間、選手の成長も止まる。その恐ろしさを、現場で身をもって知りました。</p>
+                <p>私が30年かけて見つけた答えを、あなたにはこの6ヶ月で手に入れてほしい。</p>
+                <p>周りに相談できる人がいなくても大丈夫。ここには同じ志を持つ仲間がいます。</p>
+                <p>一緒に、選手が勝手に育つ最高のチームを作りましょう。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 署名セクション -->
+<div class="sign-section">
+    <div class="sign-inner">
+        <img src="images/sign_name.jpg" alt="署名" style="height: 80px; object-fit: contain; mix-blend-mode: multiply;">
+        <img src="images/sign_auto.jpg" alt="サイン" style="height: 60px; object-fit: contain; mix-blend-mode: multiply;">
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="cta-main">選手たちは、あなたの成長を待ってはくれない。<br>今日、最初の一歩を踏み出しませんか？</h2>
+    <p class="cta-sub">まずは1dayセミナーから。</p>
+    <p class="cta-desc">
+        公式LINEに登録して、先行案内を受け取ってください。<br>
+        登録無料・いつでも解除できます。
+    </p>
+    <div class="cta-btn-wrap">
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            LINEに登録して1dayセミナーに参加する
+        </a>
+        <span class="cta-note">登録無料・いつでも解除できます。</span>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="footer-text">© 2026 こぶさんの人づくりラボ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
