@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子育てサポート｜こぶさんの人づくりラボ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --yamabuki: #E8A020;
+            --yamabuki-deep: #C47A10;
+            --yamabuki-light: #F5C060;
+            --yamabuki-pale: #FDF3E0;
+            --white: #ffffff;
+            --text-dark: #2a2015;
+            --text-mid: #6b5020;
+            --text-light: #a07840;
+            --border: #f0d090;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; font-size: 16px; color: var(--text-dark); background: var(--white); line-height: 1.8; }
+
+        /* ===== HEADER ===== */
+        header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 14px 32px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .logo-wrap { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+        .logo-main { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); letter-spacing: 0.05em; }
+        .logo-main em { font-style: normal; color: var(--yamabuki); }
+        .logo-sub { font-size: 9px; color: var(--text-light); letter-spacing: 0.14em; }
+        .back-btn { font-size: 13px; color: var(--text-mid); text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 4px; transition: all 0.2s; }
+        .back-btn:hover { background: var(--yamabuki-pale); color: var(--yamabuki-deep); }
+
+        /* ===== HERO ===== */
+        .hero { margin-top: 70px; display: flex; min-height: 500px; }
+        .hero-photo { width: 50%; position: relative; overflow: hidden; }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+        .hero-text { width: 50%; background: var(--yamabuki-pale); padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(232,160,32,0.15); border: 1px solid var(--border); border-radius: 3px; padding: 5px 12px; margin-bottom: 20px; width: fit-content; }
+        .hero-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yamabuki); }
+        .hero-badge span { font-size: 11px; color: var(--text-mid); letter-spacing: 0.06em; }
+        .hero-title { font-family: 'Noto Serif JP', serif; font-size: 30px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 16px; }
+        .hero-title em { font-style: normal; color: var(--yamabuki-deep); }
+        .hero-sub { font-size: 15px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .btn-line { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 14px 28px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-line:hover { opacity: 0.88; }
+
+        /* ===== SECTIONS ===== */
+        .section { padding: 80px 32px; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 12px; text-align: center; }
+        .section-sub { font-size: 15px; color: var(--text-mid); text-align: center; line-height: 1.9; margin-bottom: 48px; }
+        .bg-white { background: var(--white); }
+        .bg-pale { background: var(--yamabuki-pale); }
+
+        /* ===== 悩みセクション ===== */
+        .nayami-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+        .nayami-item { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 20px 24px; display: flex; align-items: flex-start; gap: 12px; }
+        .nayami-icon { font-size: 20px; flex-shrink: 0; }
+        .nayami-text { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+        .nayami-message { background: var(--white); border-left: 3px solid var(--yamabuki); border-radius: 4px; padding: 24px 28px; text-align: center; }
+        .nayami-message p { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--text-dark); line-height: 2.2; }
+        .nayami-message strong { color: var(--yamabuki-deep); font-weight: 700; }
+
+        /* ===== 3つのカギ ===== */
+        .key-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .key-card { background: var(--white); border: 0.5px solid var(--yamabuki-light); border-radius: 12px; padding: 28px; }
+        .key-icon { font-size: 28px; margin-bottom: 12px; }
+        .key-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 6px; }
+        .key-sub { font-size: 12px; color: var(--yamabuki); margin-bottom: 12px; font-weight: 500; }
+        .key-card p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== 講座案内 ===== */
+        .course-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .course-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .course-card.featured { border: 2px solid var(--yamabuki); position: relative; }
+        .course-badge { position: absolute; top: -1px; right: 20px; background: var(--yamabuki); color: var(--white); font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 0 0 6px 6px; letter-spacing: 0.04em; }
+        .course-header { background: var(--yamabuki-pale); padding: 24px; text-align: center; border-bottom: 0.5px solid var(--border); }
+        .course-header.featured-header { background: var(--yamabuki); }
+        .course-header.featured-header .course-name { color: var(--white); }
+        .course-header.featured-header .course-price { color: var(--white); }
+        .course-header.featured-header .course-price-sub { color: rgba(255,255,255,0.8); }
+        .course-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 8px; }
+        .course-price { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 700; color: var(--yamabuki-deep); }
+        .course-price span { font-size: 14px; font-weight: 400; }
+        .course-price-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+        .course-body { padding: 24px; }
+        .course-features { list-style: none; margin-bottom: 20px; }
+        .course-features li { font-size: 14px; color: var(--text-mid); padding: 8px 0; border-bottom: 0.5px solid #f8f0e0; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
+        .course-features li:last-child { border-bottom: none; }
+        .course-features li::before { content: '✓'; color: var(--yamabuki); flex-shrink: 0; font-weight: 700; }
+        .btn-course { display: block; text-align: center; background: var(--yamabuki); color: var(--white); border: none; border-radius: 3px; padding: 12px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-course:hover { background: var(--yamabuki-deep); }
+        .btn-course-line { display: block; text-align: center; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 12px; font-size: 14px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-course-line:hover { opacity: 0.88; }
+
+        /* ===== 選ばれる理由 ===== */
+        .reasons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .reason { text-align: center; padding: 32px 24px; background: var(--white); border-radius: 12px; border: 0.5px solid var(--border); }
+        .reason-icon { font-size: 36px; margin-bottom: 16px; }
+        .reason-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 10px; }
+        .reason p { font-size: 14px; color: var(--text-mid); line-height: 1.9; }
+
+        /* ===== ラボ生の声 ===== */
+        .voice-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .voice-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px; }
+        .voice-tag { display: inline-block; font-size: 11px; background: var(--yamabuki-pale); color: var(--yamabuki-deep); border-radius: 3px; padding: 2px 8px; margin-bottom: 12px; }
+        .voice-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.6; }
+        .voice-card p { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 12px; }
+        .voice-author { font-size: 12px; color: var(--text-light); text-align: right; }
+
+        /* ===== メッセージ ===== */
+        .message-wrap { display: flex; gap: 48px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
+        .message-photo { width: 200px; flex-shrink: 0; }
+        .message-photo img { width: 100%; height: 240px; object-fit: cover; object-position: center top; border-radius: 8px; }
+        .message-body { flex: 1; }
+        .message-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+        .message-title { font-size: 12px; color: var(--yamabuki-deep); margin-bottom: 20px; }
+        .message-body p { font-size: 15px; color: var(--text-mid); line-height: 2.2; margin-bottom: 16px; }
+        .message-body p:last-child { margin-bottom: 0; }
+
+        /* ===== CTA ===== */
+        .cta-section { background: var(--yamabuki-pale); padding: 80px 32px; text-align: center; }
+        .cta-main { font-family: 'Noto Serif JP', serif; font-size: 30px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.5; }
+        .cta-sub { font-size: 16px; color: var(--text-mid); margin-bottom: 24px; }
+        .cta-desc { font-size: 14px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .cta-note { font-size: 11px; color: var(--text-light); }
+
+        /* ===== FOOTER ===== */
+        footer { background: var(--yamabuki); padding: 32px; text-align: center; }
+        .footer-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; }
+            .hero-photo { width: 100%; height: 300px; }
+            .hero-text { width: 100%; padding: 40px 20px; }
+            .hero-title { font-size: 24px; }
+            .nayami-grid { grid-template-columns: 1fr; }
+            .key-cards { grid-template-columns: 1fr; }
+            .course-cards { grid-template-columns: 1fr; }
+            .reasons { grid-template-columns: 1fr; }
+            .voice-cards { grid-template-columns: 1fr; }
+            .message-wrap { flex-direction: column; }
+            .message-photo { width: 100%; }
+            .section { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html" class="logo-wrap">
+        <div class="logo-main"><em>こぶさん</em>の人づくりラボ</div>
+        <div class="logo-sub">KOBU'S PEOPLE LAB</div>
+    </a>
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> トップへ戻る
+    </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-photo">
+        <img src="images/mk004.jpg" alt="子育てサポート">
+    </div>
+    <div class="hero-text">
+        <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>脳科学 × 心理学 × 30年のコーチ経験</span>
+        </div>
+        <h1 class="hero-title">「早くして！」を卒業し、<br>子どもの<em>「やりたい！」</em>が<br>溢れ出す家庭へ。</h1>
+        <p class="hero-sub">
+            30年の指導現場で証明された、<br>
+            親子の絆を深める「自立の教科書」。
+        </p>
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            まずは無料体験に申し込む
+        </a>
+    </div>
+</div>
+
+<!-- 悩みセクション -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">こんなお悩み、ありませんか？</h2>
+        <p class="section-sub">毎日一生懸命なのに、なぜかうまくいかない。<br>そのモヤモヤ、一緒に解決しましょう。</p>
+        <div class="nayami-grid">
+            <div class="nayami-item">
+                <div class="nayami-icon">😔</div>
+                <div class="nayami-text">何度言っても動かない子どもに、つい感情的に怒鳴ってしまう</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">😰</div>
+                <div class="nayami-text">周りの子と比べて、わが子の将来が不安でたまらない</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">😢</div>
+                <div class="nayami-text">「良かれ」と思って言った言葉が、子どものやる気を削いでいる気がする</div>
+            </div>
+            <div class="nayami-item">
+                <div class="nayami-icon">😩</div>
+                <div class="nayami-text">仕事と育児の両立で、心の余裕がなくなっている</div>
+            </div>
+        </div>
+        <div class="nayami-message">
+            <p>
+                「あなたは、これまで十分に頑張ってきました。」<br>
+                うまくいかないのは、あなたのせいではありません。<br>
+                ただ、子どもが「自分で考えて動き出す」ための、<strong>ちょっとしたコツをまだ知らないだけ。</strong><br><br>
+                子どもは、お母さんの「声かけ」ひとつで、<strong>勝手に育ち始めるのです。</strong>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 3つのカギ -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">わが子の「自分で考える力」を解き放つ<br>3つのカギ</h2>
+        <p class="section-sub">こぶさんメソッド｜自立の扉を開く、3つのカギ</p>
+        <div class="key-cards">
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ1：魔法の声かけ</div>
+                <div class="key-sub">【子どもの「やる気」に火を灯すカギ】</div>
+                <p>指示命令の「強制スイッチ」を卒業し、子どもの中にある答えを「問い」で引き出す。たった一言の言い換えで、指示待ちだった子が「やりたい！」と目を輝かせ始めます。</p>
+            </div>
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ2：おせっかい禁止の心得</div>
+                <div class="key-sub">【親の「信じる力」を育てるカギ】</div>
+                <p>つい手出しをしたくなる自分を卒業し、子どもが試行錯誤できる「余白」をプレゼントする。大人が一歩下がることで、子どもの主体性は爆発的に育ちます。</p>
+            </div>
+            <div class="key-card">
+                <div class="key-icon">🗝</div>
+                <div class="key-title">カギ3：北極星のしるべ</div>
+                <div class="key-sub">【親子が「迷わず進む」ためのカギ】</div>
+                <p>自由放任ではなく、親子で「目指すべきゴール」を対話で共有する。納得感のある基準があるからこそ、子どもは自分の力で安全に、遠くまで歩いていけるようになります。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 講座案内 -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">あなたに合ったサポートを選んでください</h2>
+        <p class="section-sub">まずは無料体験から。ご自身のペースで始められます。</p>
+        <div class="course-cards">
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-name">無料体験セミナー</div>
+                    <div class="course-price">0<span>円</span></div>
+                    <div class="course-price-sub">30分・ワークなし</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>魔法の声かけの基本をお伝えします</li>
+                        <li>心のコップ理論を学べます</li>
+                        <li>今日からすぐ使えるフレーズをプレゼント</li>
+                        <li>オンライン開催・どこからでも参加OK</li>
+                    </ul>
+                    <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-course-line">
+                        <i class="fa-brands fa-line"></i> LINEで申し込む
+                    </a>
+                </div>
+            </div>
+            <div class="course-card featured">
+                <div class="course-badge">おすすめ</div>
+                <div class="course-header featured-header">
+                    <div class="course-name">魔法の声かけ基礎講座</div>
+                    <div class="course-price">3,000<span>円</span></div>
+                    <div class="course-price-sub">60分・ワーク付き</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>無料体験の内容＋実践ワーク付き</li>
+                        <li>お子さんのタイプ診断（VAK）</li>
+                        <li>タイプ別の声かけフレーズを学べます</li>
+                        <li>個別相談チケット付き（特典）</li>
+                        <li>オンライン開催・録画あり</li>
+                    </ul>
+                    <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-course-line">
+                        <i class="fa-brands fa-line"></i> LINEで申し込む
+                    </a>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-name">個別サポート</div>
+                    <div class="course-price" style="font-size: 20px; padding-top: 8px;">あなただけの<br>オーダーメイド</div>
+                    <div class="course-price-sub">料金はLINEでご相談</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>1対1でお子さんの状況に合わせた声かけを設計</li>
+                        <li>脳科学に基づいたオーダーメイドプラン</li>
+                        <li>子育て6ヶ月集中プログラムも選べます</li>
+                        <li>「うちの子には何て言えばいいの？」の迷いがなくなります</li>
+                    </ul>
+                    <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-course-line">
+                        <i class="fa-brands fa-line"></i> LINEで詳細を聞く
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 選ばれる理由 -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title">こぶさんメソッドが選ばれる理由</h2>
+        <p class="section-sub">理論だけでなく「実際に子どもが変わった」方法だけをお伝えします。</p>
+        <div class="reasons">
+            <div class="reason">
+                <div class="reason-icon">⚽</div>
+                <div class="reason-title">現場主義</div>
+                <p>サッカー指導3,000人の実績。理屈だけでなく「実際に子どもが変わった」方法だけをお伝えします。</p>
+            </div>
+            <div class="reason">
+                <div class="reason-icon">🧠</div>
+                <div class="reason-title">科学的根拠</div>
+                <p>脳の仕組みを理解するから、精神論に頼らずに済みます。なぜ効くのかが分かるから、自信を持って実践できます。</p>
+            </div>
+            <div class="reason">
+                <div class="reason-icon">🌱</div>
+                <div class="reason-title">一生モノの力</div>
+                <p>テストの点数だけではない、一生モノの「折れない心」を育てます。子育てだけでなく、人生全体に活きる力です。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ラボ生の声 -->
+<section class="section bg-white">
+    <div class="section-inner">
+        <h2 class="section-title">ラボ生の声</h2>
+        <p class="section-sub">同じ悩みを抱えていたお母さんたちの変化をご覧ください。</p>
+        <div class="voice-cards">
+            <div class="voice-card">
+                <div class="voice-tag">【子育て】魔法の実況中継</div>
+                <div class="voice-title">イライラが消え、家族に笑顔が戻った</div>
+                <p>毎日、同じことを言い続けても変わらない子どもの姿にイライラし、つい怒鳴ってしまう自分に自己嫌悪する日々でした。でもセミナーで「肯定的な実況中継」を教わり、玄関まで行けたことを認めるだけで、子どものやる気スイッチが自然に入るのを目の当たりにしました。小4の息子が自分から明日の準備をするように！「私が変われば、子どもが変わる」その言葉の意味を、初めて心で理解できた気がします。</p>
+                <div class="voice-author">（30代・小学生ママ）</div>
+            </div>
+            <div class="voice-card">
+                <div class="voice-tag">【コミュニケーション】すれ違いが消えた</div>
+                <div class="voice-title">「伝わらない」の理由がわかってスッキリ！</div>
+                <p>なぜ私の言うことが伝わらないのか、その理由が特性の違いにあると知って腑に落ちました。相手のタイプに合わせた声かけを意識しただけで、不要なすれ違いがなくなり、驚くほどスムーズに意思疎通ができるように。子育てだけでなく、夫や職場での対人関係にも活かせています。</p>
+                <div class="voice-author">（小学生ママ・支援職）</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- こぶさんからのメッセージ -->
+<section class="section bg-pale">
+    <div class="section-inner">
+        <h2 class="section-title" style="margin-bottom: 40px;">こぶさんからのメッセージ</h2>
+        <div class="message-wrap">
+            <div class="message-photo">
+                <img src="images/mk001.jpg" alt="こぶさん">
+            </div>
+            <div class="message-body">
+                <div class="message-name">小鮒 正樹（こぶ）</div>
+                <div class="message-title">人づくりラボ代表｜魔法の声かけコーチ</div>
+                <p>「子育てに遅すぎることは、一つもありません。」</p>
+                <p>お母さんが笑えば、子どもは変わります。ピッチで何千人もの子どもが輝き出した瞬間を、今度はあなたのご家庭で再現しませんか？</p>
+                <p>あなたは一人じゃありません。一緒に、笑顔の毎日を作りましょう。</p>
+                <div style="display: flex; align-items: center; gap: 24px; margin-top: 24px;">
+                    <img src="images/sign_name.jpg" alt="署名" style="height: 100px; object-fit: contain; mix-blend-mode: multiply; background: #FDF3E0;">
+                    <img src="images/sign_auto.jpg" alt="サイン" style="height: 80px; object-fit: contain; mix-blend-mode: multiply; background: #FDF3E0;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+    <h2 class="cta-main">今日が、景色が変わる日になる。</h2>
+    <p class="cta-sub">こぶさんと、一緒に始めませんか？</p>
+    <p class="cta-desc">
+        まずは無料体験から。<br>
+        公式LINEに登録して、今日から使える声かけ集をプレゼント！
+    </p>
+    <div class="cta-btn-wrap">
+        <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
+            <i class="fa-brands fa-line"></i>
+            今すぐ無料で「魔法の声かけ」を受け取る
+        </a>
+        <span class="cta-note">登録無料・いつでも解除できます。</span>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p class="footer-text">© 2026 こぶさんの人づくりラボ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
