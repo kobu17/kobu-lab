@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>こぶさんの人づくりラボ</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -18,1033 +16,166 @@
             --text-light: #a07840;
             --border: #f0d090;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: 16px;
-            color: var(--text-dark);
-            background: var(--white);
-            line-height: 1.8;
-        }
-
-        /* ===== TOPBAR ===== */
-        .topbar {
-            background: var(--yamabuki);
-            padding: 6px 32px;
-            display: flex;
-            justify-content: flex-end;
-            gap: 24px;
-        }
-
-        .topbar a {
-            font-size: 12px;
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.9;
-            letter-spacing: 0.04em;
-        }
-
-        .topbar a:hover {
-            opacity: 1;
-        }
-
-        /* ===== HEADER ===== */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--white);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 32px;
-            border-bottom: 0.5px solid var(--border);
-        }
-
-        .logo-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            text-decoration: none;
-        }
-
-        .logo-main {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--yamabuki-deep);
-            letter-spacing: 0.05em;
-        }
-
-        .logo-main em {
-            font-style: normal;
-            color: var(--yamabuki);
-        }
-
-        .logo-sub {
-            font-size: 9px;
-            color: var(--text-light);
-            letter-spacing: 0.14em;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 4px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            font-size: 12px;
-            color: var(--text-mid);
-            text-decoration: none;
-            letter-spacing: 0.04em;
-            padding: 6px 10px;
-            border-radius: 4px;
-            display: block;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        nav a:hover {
-            color: var(--yamabuki-deep);
-            background: var(--yamabuki-pale);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: -20px;
-            right: -20px;
-            height: 1rem;
-            background: transparent;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: calc(100% + 4px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--white);
-            min-width: 200px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            border: 0.5px solid var(--border);
-            overflow: hidden;
-            z-index: 100;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            font-size: 12px;
-            color: var(--text-mid);
-            padding: 10px 16px;
-            border-bottom: 0.5px solid #f8f0e0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-radius: 0;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--yamabuki-pale);
-            color: var(--yamabuki-deep);
-        }
-
-        .badge-soon {
-            font-size: 9px;
-            background: #f0e0c0;
-            color: var(--text-light);
-            border-radius: 3px;
-            padding: 1px 5px;
-        }
-
-        /* ===== HERO SLIDER ===== */
-        .hero-section {
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .slider {
-            position: relative;
-        }
-
-        .slide {
-            display: none;
-            min-height: 500px;
-            align-items: stretch;
-            position: relative;
-        }
-
-        .slide.active {
-            display: flex;
-        }
-
-        .slide-bg-pale {
-            background: var(--yamabuki-pale);
-        }
-
-        .slide-bg-white {
-            background: var(--white);
-        }
-
-        .slide-inner {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            width: 100%;
-        }
-
-        .slide-text {
-            width: 50%;
-            padding-left: 48px;
-            z-index: 1;
-        }
-
-        .slide-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: rgba(232, 160, 32, 0.12);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            padding: 5px 12px;
-            margin-bottom: 20px;
-        }
-
-        .slide-badge-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--yamabuki);
-        }
-
-        .slide-badge span {
-            font-size: 14px;
-            color: var(--text-mid);
-            letter-spacing: 0.06em;
-        }
-
-        .slide-main {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 34px;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .slide-main em {
-            font-style: normal;
-            color: var(--yamabuki-deep);
-            border-bottom: 2px solid var(--yamabuki-light);
-            padding-bottom: 1px;
-        }
-
-        .slide-sub {
-            font-size: 16px;
-            color: var(--text-mid);
-            line-height: 2;
-            margin-bottom: 28px;
-            font-weight: 300;
-        }
-
-        .slide-sub strong {
-            color: var(--text-dark);
-            font-weight: 500;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: var(--yamabuki);
-            color: var(--white);
-            border: none;
-            border-radius: 3px;
-            padding: 16px 28px;
-            font-size: 16px;
-            font-weight: 500;
-            font-family: 'Noto Sans JP', sans-serif;
-            letter-spacing: 0.06em;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .btn-primary:hover {
-            background: var(--yamabuki-deep);
-        }
-
-        .btn-line {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #06C755;
-            color: var(--white);
-            border: none;
-            border-radius: 3px;
-            padding: 16px 24px;
-            font-size: 16px;
-            font-weight: 500;
-            font-family: 'Noto Sans JP', sans-serif;
-            letter-spacing: 0.06em;
-            cursor: pointer;
-            text-decoration: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn-line:hover {
-            opacity: 0.88;
-        }
-
-        .slide-photo {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 50%;
-            z-index: 0;
-        }
-
-        .slide-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            border-radius: 0;
-            display: block;
-        }
-
-        /* Slider Controls */
-        .slider-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px 0;
-            background: var(--white);
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer;
-            transition: background 0.2s;
-            border: none;
-        }
-
-        .dot.active {
-            background: var(--yamabuki);
-        }
-
-        .slider-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: 0.5px solid var(--border);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 14px;
-            color: var(--text-mid);
-            transition: all 0.2s;
-        }
-
-        .slider-arrow:hover {
-            background: var(--yamabuki-pale);
-            color: var(--yamabuki-deep);
-        }
-
-        .slider-prev {
-            left: 16px;
-        }
-
-        .slider-next {
-            right: 16px;
-        }
-
-        /* ===== STATS BAR ===== */
-        .stats-bar {
-            display: flex;
-            background: var(--yamabuki);
-        }
-
-        .stat {
-            flex: 1;
-            padding: 16px 20px;
-            text-align: center;
-            border-right: 0.5px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat-num {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--white);
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .stat-label {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.85);
-            letter-spacing: 0.06em;
-        }
-
-        /* ===== SECTIONS COMMON ===== */
-        .section {
-            padding: 80px 32px;
-        }
-
-        .section-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 30px;
-            font-weight: 700;
-            color: var(--text-dark);
-            line-height: 1.7;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .section-sub {
-            font-size: 16px;
-            color: var(--text-mid);
-            text-align: center;
-            line-height: 1.9;
-            margin-bottom: 48px;
-        }
-
-        .bg-white {
-            background: var(--white);
-        }
-
-        .bg-pale {
-            background: var(--yamabuki-pale);
-        }
-
-        /* ===== KYOKAN SECTION ===== */
-        .kyokan-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 48px;
-        }
-
-        .kyokan-card {
-            background: var(--white);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
-        }
-
-        .kyokan-card-title {
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--yamabuki-deep);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .kyokan-card ul {
-            list-style: none;
-        }
-
-        .kyokan-card ul li {
-            font-size: 15px;
-            color: var(--text-mid);
-            padding: 8px 0;
-            border-bottom: 0.5px solid #f8f0e0;
-            line-height: 1.7;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .kyokan-card ul li:last-child {
-            border-bottom: none;
-        }
-
-        .kyokan-card ul li::before {
-            content: '・';
-            color: var(--yamabuki);
-            flex-shrink: 0;
-        }
-
-        .kyokan-message {
-            background: var(--yamabuki-pale);
-            border-left: 3px solid var(--yamabuki);
-            border-radius: 4px;
-            padding: 24px 28px;
-            text-align: center;
-        }
-
-        .kyokan-message p {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 15px;
-            color: var(--text-dark);
-            line-height: 2.2;
-        }
-
-        .kyokan-message strong {
-            color: var(--yamabuki-deep);
-            font-weight: 700;
-        }
-
-        /* ===== METHOD SECTION ===== */
-        .method-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .method-card {
-            background: var(--white);
-            border: 0.5px solid var(--yamabuki-light);
-            border-radius: 12px;
-            padding: 28px;
-            transition: box-shadow 0.2s;
-        }
-
-        .method-card:hover {
-            box-shadow: 0 8px 24px rgba(232, 160, 32, 0.15);
-        }
-
-        .method-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .method-card-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--yamabuki-deep);
-            margin-bottom: 6px;
-        }
-
-        .method-card-sub {
-            font-size: 12px;
-            color: var(--yamabuki);
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .method-card p {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 1.9;
-        }
-
-        /* ===== VISION SECTION ===== */
-        .vision-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-
-        .vision-main-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 30px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .vision-sub-title {
-            font-size: 14px;
-            color: var(--text-mid);
-            line-height: 2;
-        }
-
-        .vision-chapters {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            max-width: 720px;
-            margin: 0 auto 48px;
-        }
-
-        .chapter {
-            border-left: 3px solid var(--yamabuki);
-            padding-left: 24px;
-        }
-
-        .chapter-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--yamabuki-deep);
-            margin-bottom: 14px;
-        }
-
-        .chapter p {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 2.2;
-            margin-bottom: 12px;
-        }
-
-        .chapter p:last-child {
-            margin-bottom: 0;
-        }
-
-        .vision-closing {
-            text-align: center;
-            padding: 40px;
-            background: var(--yamabuki-pale);
-            border-radius: 8px;
-        }
-
-        .vision-closing p {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 18px;
-            color: var(--yamabuki-deep);
-            line-height: 2;
-            font-weight: 700;
-        }
-
-        /* ===== PROFILE SECTION ===== */
-        .profile-wrap {
-            display: flex;
-            gap: 48px;
-            align-items: flex-start;
-        }
-
-        .profile-photo {
-            width: 260px;
-            flex-shrink: 0;
-        }
-
-        .profile-photo img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            object-position: center top;
-            border-radius: 8px;
-        }
-
-        .profile-body {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
-        }
-
-        .profile-title {
-            font-size: 13px;
-            color: var(--yamabuki-deep);
-            margin-bottom: 24px;
-            letter-spacing: 0.04em;
-        }
-
-        .profile-block {
-            margin-bottom: 24px;
-        }
-
-        .profile-block-title {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--yamabuki);
-            letter-spacing: 0.08em;
-            margin-bottom: 8px;
-            border-bottom: 0.5px solid var(--border);
-            padding-bottom: 6px;
-        }
-
-        .profile-block p {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 2;
-        }
-
-        .profile-list {
-            list-style: none;
-        }
-
-        .profile-list li {
-            font-size: 15px;
-            color: var(--text-mid);
-            padding: 5px 0;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .profile-list li::before {
-            content: '・';
-            color: var(--yamabuki);
-            flex-shrink: 0;
-        }
-
-        /* ===== COURSES SECTION ===== */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .course-card {
-            background: var(--white);
-            border: 0.5px solid var(--yamabuki-light);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: box-shadow 0.2s, transform 0.2s;
-        }
-
-        .course-card:hover {
-            box-shadow: 0 8px 24px rgba(232, 160, 32, 0.15);
-            transform: translateY(-4px);
-        }
-
-        .course-card.disabled {
-            opacity: 0.7;
-        }
-
-        .course-card.disabled:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .course-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            object-position: center top;
-        }
-
-        .course-body {
-            padding: 20px;
-        }
-
-        .course-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--yamabuki-deep);
-            margin-bottom: 8px;
-        }
-
-        .course-catch {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .course-desc {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .btn-course {
-            display: block;
-            text-align: center;
-            background: var(--yamabuki);
-            color: var(--white);
-            border: none;
-            border-radius: 3px;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: 'Noto Sans JP', sans-serif;
-            letter-spacing: 0.04em;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .btn-course:hover {
-            background: var(--yamabuki-deep);
-        }
-
-        .btn-course-disabled {
-            display: block;
-            text-align: center;
-            background: #ccc;
-            color: var(--white);
-            border-radius: 3px;
-            padding: 10px;
-            font-size: 13px;
-            font-family: 'Noto Sans JP', sans-serif;
-        }
-
-        /* ===== VOICE SECTION ===== */
-        .voice-stories {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-            margin-bottom: 40px;
-        }
-
-        .voice-card {
-            background: var(--white);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
-        }
-
-        .voice-card-tag {
-            display: inline-block;
-            font-size: 16px;
-            font-weight: 500;
-            background: var(--yamabuki-pale);
-            color: var(--yamabuki-deep);
-            border-radius: 3px;
-            padding: 4px 12px;
-            margin-bottom: 12px;
-            letter-spacing: 0.04em;
-        }
-
-        .voice-card-title {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 14px;
-            line-height: 1.6;
-        }
-
-        .voice-card p {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 2.1;
-            margin-bottom: 14px;
-        }
-
-        .voice-card-author {
-            font-size: 15px;
-            color: var(--text-light);
-            text-align: right;
-        }
-
-        .voice-shorts {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .voice-short {
-            background: var(--white);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .voice-short-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--yamabuki-deep);
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-bottom: 0.5px solid var(--border);
-        }
-
-        .before-after {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .ba-item {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 1.7;
-        }
-
-        .ba-label {
-            display: inline-block;
-            font-size: 10px;
-            font-weight: 500;
-            padding: 1px 6px;
-            border-radius: 3px;
-            margin-bottom: 4px;
-        }
-
-        .ba-before {
-            background: #f0e0e0;
-            color: #8b3030;
-        }
-
-        .ba-after {
-            background: #e0f0e0;
-            color: #1a5c1a;
-        }
-
-        .ba-author {
-            font-size: 15px;
-            color: var(--text-light);
-            margin-top: 8px;
-            text-align: right;
-        }
-
-        .voice-closing {
-            text-align: center;
-            padding: 32px;
-            background: var(--yamabuki-pale);
-            border-radius: 8px;
-        }
-
-        .voice-closing p {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            color: var(--text-dark);
-            line-height: 2.2;
-        }
-
-        .voice-closing strong {
-            color: var(--yamabuki-deep);
-        }
-
-        /* ===== LABO TSUSHIN ===== */
-        .tsushin-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .tsushin-card {
-            background: var(--white);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .tsushin-icon {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .tsushin-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--yamabuki-deep);
-            margin-bottom: 8px;
-        }
-
-        .tsushin-desc {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 1.8;
-        }
-
-        .tsushin-closing {
-            text-align: center;
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 2;
-        }
-
-        .tsushin-closing strong {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            color: var(--text-dark);
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        /* ===== CTA SECTION ===== */
-        .cta-section {
-            background: var(--yamabuki-pale);
-            padding: 80px 32px;
-            text-align: center;
-        }
-
-        .cta-main {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .cta-sub {
-            font-size: 16px;
-            color: var(--text-mid);
-            margin-bottom: 24px;
-        }
-
-        .cta-desc {
-            font-size: 15px;
-            color: var(--text-mid);
-            line-height: 2;
-            margin-bottom: 32px;
-        }
-
-        .cta-btn-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cta-note {
-            font-size: 11px;
-            color: var(--text-light);
-        }
-
-        /* ===== FOOTER ===== */
-       footer { background: var(--yamabuki); padding: 48px 32px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans JP', sans-serif; font-size: 16px; color: var(--text-dark); background: var(--white); line-height: 1.8; }
+        .topbar { background: var(--yamabuki); padding: 6px 32px; display: flex; justify-content: flex-end; gap: 24px; }
+        .topbar a { font-size: 12px; color: var(--white); text-decoration: none; opacity: 0.9; letter-spacing: 0.04em; }
+        .topbar a:hover { opacity: 1; }
+        header { position: fixed; top: 0; width: 100%; background: var(--white); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 32px; border-bottom: 0.5px solid var(--border); }
+        .logo-wrap { display: flex; flex-direction: column; gap: 2px; text-decoration: none; }
+        .logo-main { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); letter-spacing: 0.05em; }
+        .logo-main em { font-style: normal; color: var(--yamabuki); }
+        .logo-sub { font-size: 9px; color: var(--text-light); letter-spacing: 0.14em; }
+        nav ul { list-style: none; display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+        nav a { font-size: 12px; color: var(--text-mid); text-decoration: none; letter-spacing: 0.04em; padding: 6px 10px; border-radius: 4px; display: block; transition: all 0.2s; white-space: nowrap; }
+        nav a:hover { color: var(--yamabuki-deep); background: var(--yamabuki-pale); }
+        .dropdown { position: relative; }
+        .dropdown::after { content: ''; position: absolute; top: 100%; left: -20px; right: -20px; height: 1rem; background: transparent; }
+        .dropdown-content { display: none; position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); background: var(--white); min-width: 200px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 8px; border: 0.5px solid var(--border); overflow: hidden; z-index: 100; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { font-size: 12px; color: var(--text-mid); padding: 10px 16px; border-bottom: 0.5px solid #f8f0e0; display: flex; align-items: center; justify-content: space-between; border-radius: 0; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: var(--yamabuki-pale); color: var(--yamabuki-deep); }
+        .badge-soon { font-size: 9px; background: #f0e0c0; color: var(--text-light); border-radius: 3px; padding: 1px 5px; }
+        .hero-section { margin-top: 80px; position: relative; overflow: hidden; }
+        .slider { position: relative; }
+        .slide { display: none; min-height: 500px; align-items: stretch; position: relative; }
+        .slide.active { display: flex; }
+        .slide-bg-pale { background: var(--yamabuki-pale); }
+        .slide-bg-white { background: var(--white); }
+        .slide-inner { display: flex; align-items: center; justify-content: flex-end; max-width: 1100px; margin: 0 auto; padding: 60px 40px; width: 100%; }
+        .slide-text { width: 50%; padding-left: 48px; z-index: 1; }
+        .slide-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(232,160,32,0.12); border: 1px solid var(--border); border-radius: 3px; padding: 5px 12px; margin-bottom: 20px; }
+        .slide-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--yamabuki); }
+        .slide-badge span { font-size: 14px; color: var(--text-mid); letter-spacing: 0.06em; }
+        .slide-main { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 700; color: var(--text-dark); line-height: 1.8; margin-bottom: 16px; }
+        .slide-main em { font-style: normal; color: var(--yamabuki-deep); border-bottom: 2px solid var(--yamabuki-light); padding-bottom: 1px; }
+        .slide-sub { font-size: 16px; color: var(--text-mid); line-height: 2; margin-bottom: 28px; font-weight: 300; }
+        .slide-sub strong { color: var(--text-dark); font-weight: 500; }
+        .btn-primary { display: inline-block; background: var(--yamabuki); color: var(--white); border: none; border-radius: 3px; padding: 16px 28px; font-size: 16px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-primary:hover { background: var(--yamabuki-deep); }
+        .btn-line { display: inline-flex; align-items: center; gap: 8px; background: #06C755; color: var(--white); border: none; border-radius: 3px; padding: 16px 24px; font-size: 16px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
+        .btn-line:hover { opacity: 0.88; }
+        .slide-photo { position: absolute; left: 0; top: 0; bottom: 0; width: 50%; z-index: 0; }
+        .slide-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 0; display: block; }
+        .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 16px 0; background: var(--white); }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: background 0.2s; border: none; }
+        .dot.active { background: var(--yamabuki); }
+        .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: 0.5px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; font-size: 14px; color: var(--text-mid); transition: all 0.2s; }
+        .slider-arrow:hover { background: var(--yamabuki-pale); color: var(--yamabuki-deep); }
+        .slider-prev { left: 16px; }
+        .slider-next { right: 16px; }
+        .stats-bar { display: flex; background: var(--yamabuki); }
+        .stat { flex: 1; padding: 16px 20px; text-align: center; border-right: 0.5px solid rgba(255,255,255,0.3); }
+        .stat:last-child { border-right: none; }
+        .stat-num { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 700; color: var(--white); display: block; margin-bottom: 3px; }
+        .stat-label { font-size: 10px; color: rgba(255,255,255,0.85); letter-spacing: 0.06em; }
+
+        /* ===== SEMINAR BANNER ===== */
+        .seminar-banner { background: #fff8ee; border-top: 2px solid var(--yamabuki); border-bottom: 2px solid var(--yamabuki); padding: 16px 32px; }
+        .seminar-banner-inner { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+        .seminar-banner-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .seminar-banner-tag { background: var(--yamabuki); color: var(--white); font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 3px; white-space: nowrap; }
+        .seminar-banner-text { font-size: 14px; color: var(--text-dark); font-weight: 500; line-height: 1.6; }
+        .seminar-banner-text span { color: var(--yamabuki-deep); }
+        .seminar-banner-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .seminar-banner-btn { display: inline-block; background: var(--yamabuki); color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 3px; white-space: nowrap; transition: background 0.2s; }
+        .seminar-banner-btn:hover { background: var(--yamabuki-deep); }
+        .seminar-banner-btn.outline { background: var(--white); color: var(--yamabuki-deep); border: 1px solid var(--yamabuki); }
+        .seminar-banner-btn.outline:hover { background: var(--yamabuki-pale); }
+
+        .section { padding: 80px 32px; }
+        .section-inner { max-width: 1000px; margin: 0 auto; }
+        .section-title { font-family: 'Noto Serif JP', serif; font-size: 30px; font-weight: 700; color: var(--text-dark); line-height: 1.7; margin-bottom: 12px; text-align: center; }
+        .section-sub { font-size: 16px; color: var(--text-mid); text-align: center; line-height: 1.9; margin-bottom: 48px; }
+        .bg-white { background: var(--white); }
+        .bg-pale { background: var(--yamabuki-pale); }
+        .kyokan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+        .kyokan-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px; }
+        .kyokan-card-title { font-size: 15px; font-weight: 500; color: var(--yamabuki-deep); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .kyokan-card ul { list-style: none; }
+        .kyokan-card ul li { font-size: 15px; color: var(--text-mid); padding: 8px 0; border-bottom: 0.5px solid #f8f0e0; line-height: 1.7; display: flex; align-items: flex-start; gap: 8px; }
+        .kyokan-card ul li:last-child { border-bottom: none; }
+        .kyokan-card ul li::before { content: '・'; color: var(--yamabuki); flex-shrink: 0; }
+        .kyokan-message { background: var(--yamabuki-pale); border-left: 3px solid var(--yamabuki); border-radius: 4px; padding: 24px 28px; text-align: center; }
+        .kyokan-message p { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--text-dark); line-height: 2.2; }
+        .kyokan-message strong { color: var(--yamabuki-deep); font-weight: 700; }
+        .method-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .method-card { background: var(--white); border: 0.5px solid var(--yamabuki-light); border-radius: 12px; padding: 28px; transition: box-shadow 0.2s; }
+        .method-card:hover { box-shadow: 0 8px 24px rgba(232,160,32,0.15); }
+        .method-icon { font-size: 28px; margin-bottom: 12px; }
+        .method-card-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 6px; }
+        .method-card-sub { font-size: 12px; color: var(--yamabuki); margin-bottom: 12px; font-weight: 500; }
+        .method-card p { font-size: 15px; color: var(--text-mid); line-height: 1.9; }
+        .vision-header { text-align: center; margin-bottom: 56px; }
+        .vision-main-title { font-family: 'Noto Serif JP', serif; font-size: 30px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; line-height: 1.5; }
+        .vision-sub-title { font-size: 14px; color: var(--text-mid); line-height: 2; }
+        .vision-chapters { display: flex; flex-direction: column; gap: 40px; max-width: 720px; margin: 0 auto 48px; }
+        .chapter { border-left: 3px solid var(--yamabuki); padding-left: 24px; }
+        .chapter-title { font-family: 'Noto Serif JP', serif; font-size: 17px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 14px; }
+        .chapter p { font-size: 15px; color: var(--text-mid); line-height: 2.2; margin-bottom: 12px; }
+        .chapter p:last-child { margin-bottom: 0; }
+        .vision-closing { text-align: center; padding: 40px; background: var(--yamabuki-pale); border-radius: 8px; }
+        .vision-closing p { font-family: 'Noto Serif JP', serif; font-size: 18px; color: var(--yamabuki-deep); line-height: 2; font-weight: 700; }
+        .profile-wrap { display: flex; gap: 48px; align-items: flex-start; }
+        .profile-photo { width: 260px; flex-shrink: 0; }
+        .profile-photo img { width: 100%; height: 320px; object-fit: cover; object-position: center top; border-radius: 8px; }
+        .profile-body { flex: 1; }
+        .profile-name { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+        .profile-title { font-size: 13px; color: var(--yamabuki-deep); margin-bottom: 24px; letter-spacing: 0.04em; }
+        .profile-block { margin-bottom: 24px; }
+        .profile-block-title { font-size: 12px; font-weight: 500; color: var(--yamabuki); letter-spacing: 0.08em; margin-bottom: 8px; border-bottom: 0.5px solid var(--border); padding-bottom: 6px; }
+        .profile-block p { font-size: 15px; color: var(--text-mid); line-height: 2; }
+        .profile-list { list-style: none; }
+        .profile-list li { font-size: 15px; color: var(--text-mid); padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
+        .profile-list li::before { content: '・'; color: var(--yamabuki); flex-shrink: 0; }
+        .courses-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .course-card { background: var(--white); border: 0.5px solid var(--yamabuki-light); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; }
+        .course-card:hover { box-shadow: 0 8px 24px rgba(232,160,32,0.15); transform: translateY(-4px); }
+        .course-card.disabled { opacity: 0.7; }
+        .course-card.disabled:hover { transform: none; box-shadow: none; }
+        .course-img { width: 100%; height: 180px; object-fit: cover; object-position: center top; }
+        .course-body { padding: 20px; }
+        .course-title { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 700; color: var(--yamabuki-deep); margin-bottom: 8px; }
+        .course-catch { font-size: 12px; font-weight: 500; color: var(--text-dark); margin-bottom: 10px; line-height: 1.6; }
+        .course-desc { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+        .btn-course { display: block; text-align: center; background: var(--yamabuki); color: var(--white); border: none; border-radius: 3px; padding: 10px; font-size: 13px; font-weight: 500; font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-course:hover { background: var(--yamabuki-deep); }
+        .btn-course-disabled { display: block; text-align: center; background: #ccc; color: var(--white); border-radius: 3px; padding: 10px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; }
+        .voice-stories { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 40px; }
+        .voice-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 28px; }
+        .voice-card-tag { display: inline-block; font-size: 16px; font-weight: 500; background: var(--yamabuki-pale); color: var(--yamabuki-deep); border-radius: 3px; padding: 4px 12px; margin-bottom: 12px; letter-spacing: 0.04em; }
+        .voice-card-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--text-dark); margin-bottom: 14px; line-height: 1.6; }
+        .voice-card p { font-size: 15px; color: var(--text-mid); line-height: 2.1; margin-bottom: 14px; }
+        .voice-card-author { font-size: 15px; color: var(--text-light); text-align: right; }
+        .voice-shorts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .voice-short { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px; }
+        .voice-short-title { font-size: 16px; font-weight: 500; color: var(--yamabuki-deep); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 0.5px solid var(--border); }
+        .before-after { display: flex; flex-direction: column; gap: 10px; }
+        .ba-item { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+        .ba-label { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 6px; border-radius: 3px; margin-bottom: 4px; }
+        .ba-before { background: #f0e0e0; color: #8b3030; }
+        .ba-after { background: #e0f0e0; color: #1a5c1a; }
+        .ba-author { font-size: 15px; color: var(--text-light); margin-top: 8px; text-align: right; }
+        .voice-closing { text-align: center; padding: 32px; background: var(--yamabuki-pale); border-radius: 8px; }
+        .voice-closing p { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--text-dark); line-height: 2.2; }
+        .voice-closing strong { color: var(--yamabuki-deep); }
+        .tsushin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+        .tsushin-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 12px; padding: 24px; }
+        .tsushin-icon { font-size: 24px; margin-bottom: 12px; }
+        .tsushin-title { font-size: 16px; font-weight: 500; color: var(--yamabuki-deep); margin-bottom: 8px; }
+        .tsushin-desc { font-size: 15px; color: var(--text-mid); line-height: 1.8; }
+        .tsushin-closing { text-align: center; font-size: 15px; color: var(--text-mid); line-height: 2; }
+        .tsushin-closing strong { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--text-dark); display: block; margin-bottom: 8px; }
+        .cta-section { background: var(--yamabuki-pale); padding: 80px 32px; text-align: center; }
+        .cta-main { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.5; }
+        .cta-sub { font-size: 16px; color: var(--text-mid); margin-bottom: 24px; }
+        .cta-desc { font-size: 15px; color: var(--text-mid); line-height: 2; margin-bottom: 32px; }
+        .cta-btn-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .cta-note { font-size: 11px; color: var(--text-light); }
+        footer { background: var(--yamabuki); padding: 48px 32px; }
         .footer-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
         .footer-logo { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
         .footer-logo-sub { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; margin-bottom: 16px; }
@@ -1053,163 +184,43 @@
         .footer-nav a { font-size: 12px; color: rgba(255,255,255,0.7); text-decoration: none; }
         .footer-nav a:hover { color: var(--white); }
         .footer-bottom { max-width: 1000px; margin: 0 auto; text-align: center; border-top: 0.5px solid rgba(255,255,255,0.2); padding-top: 24px; }
-
-        .footer-logo {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-
-        .sns-links {
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .sns-links a {
-            color: var(--white);
-            font-size: 20px;
-            opacity: 0.8;
-            transition: all 0.2s;
-            text-decoration: none;
-        }
-
-        .sns-links a:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .footer-text {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* ===== CONTACT ===== */
-        .contact-wrap {
-            text-align: center;
-        }
-
-        .contact-wrap p {
-            font-size: 15px;
-            color: var(--text-mid);
-            margin-bottom: 24px;
-            line-height: 2;
-        }
-
-        .btn-contact {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--yamabuki);
-            color: var(--white);
-            text-decoration: none;
-            padding: 14px 36px;
-            border-radius: 3px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .btn-contact:hover {
-            background: var(--yamabuki-deep);
-        }
-
-        /* ===== RESPONSIVE ===== */
+        .sns-links { display: flex; justify-content: flex-start; gap: 20px; margin-bottom: 20px; }
+        .sns-links a { color: var(--white); font-size: 20px; opacity: 0.8; transition: all 0.2s; text-decoration: none; }
+        .sns-links a:hover { opacity: 1; transform: scale(1.1); }
+        .footer-text { font-size: 11px; color: rgba(255,255,255,0.6); }
+        .contact-wrap { text-align: center; }
+        .contact-wrap p { font-size: 15px; color: var(--text-mid); margin-bottom: 24px; line-height: 2; }
+        .btn-contact { display: inline-flex; align-items: center; gap: 8px; background: var(--yamabuki); color: var(--white); text-decoration: none; padding: 14px 36px; border-radius: 3px; font-size: 13px; font-weight: 500; transition: background 0.2s; }
+        .btn-contact:hover { background: var(--yamabuki-deep); }
         @media (max-width: 768px) {
-            .header-inner {
-                padding: 12px 16px;
-            }
-
-            .logo-main {
-                font-size: 13px;
-            }
-
-            nav ul {
-                gap: 2px;
-            }
-
-            nav a {
-                font-size: 11px;
-                padding: 5px 7px;
-            }
-
-            .slide-inner {
-                flex-direction: column;
-                padding: 40px 20px;
-                gap: 28px;
-                justify-content: center;
-            }
-
-            .slide-photo {
-                position: relative;
-                width: 100%;
-                height: 360px;
-            }
-
-            .slide-photo img {
-                border-radius: 8px;
-            }
-
-            .slide-text {
-                width: 100%;
-                padding-left: 0;
-            }
-
-            .slide-main {
-                font-size: 22px;
-            }
-
-            .kyokan-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .method-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-wrap {
-                flex-direction: column;
-            }
-
-            .profile-photo {
-                width: 100%;
-            }
-
-            .courses-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .voice-stories {
-                grid-template-columns: 1fr;
-            }
-
-            .voice-shorts {
-                grid-template-columns: 1fr;
-            }
-
-            .tsushin-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section {
-                padding: 60px 20px;
-            }
+            .header-inner { padding: 12px 16px; }
+            .logo-main { font-size: 13px; }
+            nav ul { gap: 2px; }
+            nav a { font-size: 11px; padding: 5px 7px; }
+            .slide-inner { flex-direction: column; padding: 40px 20px; gap: 28px; justify-content: center; }
+            .slide-photo { position: relative; width: 100%; height: 360px; }
+            .slide-photo img { border-radius: 8px; }
+            .slide-text { width: 100%; padding-left: 0; }
+            .slide-main { font-size: 22px; }
+            .kyokan-grid { grid-template-columns: 1fr; }
+            .method-cards { grid-template-columns: 1fr; }
+            .profile-wrap { flex-direction: column; }
+            .profile-photo { width: 100%; }
+            .courses-grid { grid-template-columns: 1fr 1fr; }
+            .voice-stories { grid-template-columns: 1fr; }
+            .voice-shorts { grid-template-columns: 1fr; }
+            .tsushin-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 20px; }
+            .seminar-banner { padding: 12px 16px; }
+            .seminar-banner-inner { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
-
 <body>
-
-    <!-- TOPBAR -->
     <div class="topbar">
         <a href="#">新着情報</a>
         <a href="#contact">お問合わせ</a>
     </div>
-
-    <!-- HEADER -->
     <header>
         <div class="header-inner">
             <a href="#" class="logo-wrap">
@@ -1237,82 +248,69 @@
             </nav>
         </div>
     </header>
-
-    <!-- HERO SLIDER -->
     <div class="hero-section">
         <div class="slider">
             <button class="slider-arrow slider-prev" onclick="changeSlide(-1)">‹</button>
             <button class="slider-arrow slider-next" onclick="changeSlide(1)">›</button>
-
-            <!-- Slide 1: Vision -->
             <div class="slide slide-bg-pale">
                 <div class="slide-inner">
-                    <div class="slide-photo">
-                        <img src="images/mk019.jpg" alt="Vision" style="object-position: center 25%;">
-                    </div>
+                    <div class="slide-photo"><img src="images/mk019.jpg" alt="Vision" style="object-position: center 25%;"></div>
                     <div class="slide-text">
-                        <div class="slide-badge">
-                            <div class="slide-badge-dot"></div>
-                            <span>脳科学 × 心理学 × 30年のコーチ経験</span>
-                        </div>
+                        <div class="slide-badge"><div class="slide-badge-dot"></div><span>脳科学 × 心理学 × 30年のコーチ経験</span></div>
                         <h1 class="slide-main">人が育てば、地域が変わる。<br>世界が変わる。</h1>
-                        <p class="slide-sub">
-                            「教える」から「引き出す」へ。<br>
-                            一生モノの自立を育む「人づくり」の研究室。
-                        </p>
+                        <p class="slide-sub">「教える」から「引き出す」へ。<br>一生モノの自立を育む「人づくり」の研究室。</p>
                         <a href="#about-mothers-coach" class="btn-primary">ラボの理念を見る →</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 2: 子育てサポート -->
             <div class="slide slide-bg-white active">
                 <div class="slide-inner">
-                    <div class="slide-photo">
-                        <img src="images/mk005.jpg" alt="子育てサポート">
-                    </div>
+                    <div class="slide-photo"><img src="images/mk005.jpg" alt="子育てサポート"></div>
                     <div class="slide-text">
                         <h1 class="slide-main">「うちの子、このままで<em>いいのかな</em>」<br>そう思ったことがあるママへ。</h1>
-                        <p class="slide-sub">
-                            ガミガミ言わなくても、子どもが<br>
-                            自ら考えて動き出す。「魔法の声かけ」
-                        </p>
+                        <p class="slide-sub">ガミガミ言わなくても、子どもが<br>自ら考えて動き出す。「魔法の声かけ」</p>
                         <a href="childcare.html" class="btn-primary">子育て講座の詳細を見る →</a>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 3: 指導者サポート -->
             <div class="slide slide-bg-pale">
                 <div class="slide-inner">
-                    <div class="slide-photo">
-                        <img src="images/mk021.jpg" alt="指導者サポート" style="object-position: 20% center;">
-                    </div>
+                    <div class="slide-photo"><img src="images/mk021.jpg" alt="指導者サポート" style="object-position: 20% center;"></div>
                     <div class="slide-text">
                         <h1 class="slide-main">砂遊びしていた子が、市内大会で優勝。<br>リフティング50回以下でも、リーグ戦1位。</h1>
-                        <p class="slide-sub">
-                            環境や選手のせいにしなくていい。<br>
-                            30年・3,000人の指導で証明された「勝手に育つ」チームづくり。<br>
-                            倉本和昌公認・認定講師がその秘訣を伝授。
-                        </p>
+                        <p class="slide-sub">環境や選手のせいにしなくていい。<br>30年・3,000人の指導で証明された「勝手に育つ」チームづくり。<br>倉本和昌公認・認定講師がその秘訣を伝授。</p>
                         <a href="instructor.html" class="btn-primary">指導をアップデートする体験セミナーを見る →</a>
                     </div>
                 </div>
             </div>
-
             <div class="slider-dots">
                 <button class="dot" onclick="goToSlide(0)"></button>
                 <button class="dot active" onclick="goToSlide(1)"></button>
                 <button class="dot" onclick="goToSlide(2)"></button>
             </div>
         </div>
-
-        <!-- STATS BAR -->
         <div class="stats-bar">
             <div class="stat"><span class="stat-num">30年</span><span class="stat-label">コーチ経験</span></div>
             <div class="stat"><span class="stat-num">3,000人</span><span class="stat-label">携わった子どもたち</span></div>
             <div class="stat"><span class="stat-num">0人</span><span class="stat-label">ぐれた子</span></div>
             <div class="stat"><span class="stat-num">全国</span><span class="stat-label">オンライン対応</span></div>
+        </div>
+
+        <!-- SEMINAR BANNER -->
+        <div class="seminar-banner">
+            <div class="seminar-banner-inner">
+                <div class="seminar-banner-left">
+                    <span class="seminar-banner-tag">開催情報</span>
+                    <div class="seminar-banner-text">
+                        <span>5/30（土）21:00〜</span> 無料体験会 ／ <span>6/7（日）10:00〜</span> ワーク付き有料セミナー<br>
+                        何回言っても動かない子が変わる！魔法の声かけ体験会
+                    </div>
+                </div>
+                <div class="seminar-banner-links">
+                    <a href="https://kokc.jp/e/d4a21661d38edee41f2a46a0af4e70d4/" target="_blank" class="seminar-banner-btn outline">無料（こくちーず）</a>
+                    <a href="https://mahounokoekake.peatix.com" target="_blank" class="seminar-banner-btn">有料（Peatix）</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1342,18 +340,11 @@
                 </div>
             </div>
             <div class="kyokan-message">
-                <p>
-                    「あなたは、これまで十分に頑張ってきました。」<br>
-                    うまくいかないのは、あなたの才能や性格のせいではありません。<br>
-                    ただ、子どもが「自分で考えて動き出す」ための、<strong>ちょっとしたコツをまだ知らないだけ。</strong><br><br>
-                    30年の現場経験から確信していることがあります。<br>
-                    子どもは、お母さんやコーチの「声かけ」ひとつで、<strong>勝手に育ち始めるのです。</strong>
-                </p>
+                <p>「あなたは、これまで十分に頑張ってきました。」<br>うまくいかないのは、あなたの才能や性格のせいではありません。<br>ただ、子どもが「自分で考えて動き出す」ための、<strong>ちょっとしたコツをまだ知らないだけ。</strong><br><br>30年の現場経験から確信していることがあります。<br>子どもは、お母さんやコーチの「声かけ」ひとつで、<strong>勝手に育ち始めるのです。</strong></p>
             </div>
         </div>
     </section>
 
-    <!-- 本質提示セクション -->
     <section class="section bg-pale" id="method">
         <div class="section-inner">
             <h2 class="section-title">30年、3,000人の自立を導いた現場で見つけた<br>わが子の「自分で考える力」を解き放つ<br>3つのカギ</h2>
@@ -1381,17 +372,11 @@
         </div>
     </section>
 
-    <!-- Vision セクション -->
     <section class="section bg-white" id="about-mothers-coach">
         <div class="section-inner">
             <div class="vision-header">
                 <h2 class="vision-main-title">子どもの笑顔を消すのは、大人だった。</h2>
-                <p class="vision-sub-title">
-                    「お父さん、もう言わないで」と言えなかった<br>
-                    あの日の僕が、30年かけて辿り着いた真実。<br>
-                    私自身も、かつて子どもの笑顔を消していた<br>
-                    一人だからこそ、伝えたい。
-                </p>
+                <p class="vision-sub-title">「お父さん、もう言わないで」と言えなかった<br>あの日の僕が、30年かけて辿り着いた真実。<br>私自身も、かつて子どもの笑顔を消していた<br>一人だからこそ、伝えたい。</p>
             </div>
             <div class="vision-chapters">
                 <div class="chapter">
@@ -1409,11 +394,9 @@
                 </div>
                 <div class="chapter">
                     <div class="chapter-title">第3章：保育園で出会った、ある女の子の「仮面」</div>
-                    <p>保育園の送り迎えで、いつも私に無邪気にキックをしてくる女の子がいました。でもある日、お母さんと一緒の彼女は借りてきた猫のようにおとなしく、「言わないで」という目で私を見つめたのです。「うちの子がそんなことするはずない」と信じ込むお母さんの横で、必死に「良い子」を演じる彼女。
-                    </p>
+                    <p>保育園の送り迎えで、いつも私に無邪気にキックをしてくる女の子がいました。でもある日、お母さんと一緒の彼女は借りてきた猫のようにおとなしく、「言わないで」という目で私を見つめたのです。「うちの子がそんなことするはずない」と信じ込むお母さんの横で、必死に「良い子」を演じる彼女。</p>
                     <p>そこで確信しました。子どもの笑顔を消しているのは、私たち大人なんだと。</p>
-                    <p>サッカーコーチを変えるだけでは足りない。一番身近にいる「親」も変わらなければ、子どもは救われない。子どもに関わるすべての大人が変われば、子どもはもっと輝ける。それが、この活動を始めた理由です。
-                    </p>
+                    <p>サッカーコーチを変えるだけでは足りない。一番身近にいる「親」も変わらなければ、子どもは救われない。子どもに関わるすべての大人が変われば、子どもはもっと輝ける。それが、この活動を始めた理由です。</p>
                 </div>
                 <div class="chapter">
                     <div class="chapter-title">第4章：私の使命：すべての大人に「3つのカギ」を届けたい</div>
@@ -1428,31 +411,25 @@
         </div>
     </section>
 
-    <!-- プロフィールセクション -->
     <section class="section bg-pale" id="profile">
         <div class="section-inner">
             <h2 class="section-title" style="margin-bottom: 40px;">こぶさんプロフィール</h2>
             <div class="profile-wrap">
-                <div class="profile-photo">
-                    <img src="images/mk001.jpg" alt="こぶさん">
-                </div>
+                <div class="profile-photo"><img src="images/mk001.jpg" alt="こぶさん"></div>
                 <div class="profile-body">
                     <div class="profile-name">小鮒 正樹（こぶ）</div>
                     <div class="profile-title">人づくりラボ代表｜魔法の声かけコーチ<br>サッカーコーチ × 脳科学 × 心理学</div>
                     <div class="profile-block">
                         <div class="profile-block-title">30年、3,000人との対話</div>
-                        <p>サッカーコーチとしてピッチに立ち続けて30年。これまで指導した子どもたちは3,000人を超えます。私の誇りは、これまでに関わった中で「ぐれた子が一人もいない」こと。どんな子の中にもある「輝く種」を信じ、引き出し続けてきました。
-                        </p>
+                        <p>サッカーコーチとしてピッチに立ち続けて30年。これまで指導した子どもたちは3,000人を超えます。私の誇りは、これまでに関わった中で「ぐれた子が一人もいない」こと。どんな子の中にもある「輝く種」を信じ、引き出し続けてきました。</p>
                     </div>
                     <div class="profile-block">
                         <div class="profile-block-title">魔法の正体：現場で磨き抜いた「引き出す技術」</div>
-                        <p>私のメソッドは、単なる精神論ではありません。脳科学・心理学・VAK特性・行動心理カード・しつもんメンタルトレーニング……。膨大な学びを30年の指導現場で実践し、改善を繰り返して辿り着いた「科学的根拠に基づいた、子どもが自ら動き出すアプローチ」です。
-                        </p>
+                        <p>私のメソッドは、単なる精神論ではありません。脳科学・心理学・VAK特性・行動心理カード・しつもんメンタルトレーニング……。膨大な学びを30年の指導現場で実践し、改善を繰り返して辿り着いた「科学的根拠に基づいた、子どもが自ら動き出すアプローチ」です。</p>
                     </div>
                     <div class="profile-block">
                         <div class="profile-block-title">架け橋として：ピッチの答えは、家庭にある</div>
-                        <p>長年の指導で確信したのは、「ピッチで輝く子の共通点は、家庭での声かけにある」ということ。子どもを変えようとするのではなく、大人の関わり方を少し変えるだけ。指導者として、そして一人の親として、ピッチと家庭を笑顔で繋ぐことが私の使命です。
-                        </p>
+                        <p>長年の指導で確信したのは、「ピッチで輝く子の共通点は、家庭での声かけにある」ということ。子どもを変えようとするのではなく、大人の関わり方を少し変えるだけ。指導者として、そして一人の親として、ピッチと家庭を笑顔で繋ぐことが私の使命です。</p>
                     </div>
                     <div class="profile-block">
                         <div class="profile-block-title">活動実績</div>
@@ -1477,7 +454,6 @@
         </div>
     </section>
 
-    <!-- サポートメニューセクション -->
     <section class="section bg-white" id="courses">
         <div class="section-inner">
             <h2 class="section-title">あなたの「現場」に魔法をかける。<br>自立への扉を開く、4つのサポート。</h2>
@@ -1488,8 +464,7 @@
                     <div class="course-body">
                         <div class="course-title">子育てサポート</div>
                         <div class="course-catch">「魔法の声かけ」で、子どもが自ら動き出す家庭を。</div>
-                        <div class="course-desc">
-                            ガミガミ言わなくても大丈夫。3,000人の指導経験と脳科学から生まれた「こぶさんメソッド」で、子どもが自ら考えて動き出す「自立の根っこ」を育てます。</div>
+                        <div class="course-desc">ガミガミ言わなくても大丈夫。3,000人の指導経験と脳科学から生まれた「こぶさんメソッド」で、子どもが自ら考えて動き出す「自立の根っこ」を育てます。</div>
                         <a href="childcare.html" class="btn-course">子育てサポートを見る →</a>
                     </div>
                 </div>
@@ -1498,8 +473,7 @@
                     <div class="course-body">
                         <div class="course-title">指導者サポート</div>
                         <div class="course-catch">「勝手に育つ」チームをつくる、世界基準の指導法。</div>
-                        <div class="course-desc">もう環境や選手のせいにしなくていい。倉本和昌公認・認定講師が、30年の知見で指導者が「教えすぎない」ことで「選手が輝く現場」を共に創ります。
-                        </div>
+                        <div class="course-desc">もう環境や選手のせいにしなくていい。倉本和昌公認・認定講師が、30年の知見で指導者が「教えすぎない」ことで「選手が輝く現場」を共に創ります。</div>
                         <a href="instructor.html" class="btn-course">指導者サポートを見る →</a>
                     </div>
                 </div>
@@ -1508,8 +482,7 @@
                     <div class="course-body">
                         <div class="course-title">行動心理カードセッション</div>
                         <div class="course-catch">自分でも気づかなかった「心のブレーキ」を可視化する。</div>
-                        <div class="course-desc">
-                            思考の癖・セルフイメージ・心の奥の願い。カードを使って「今の自分」を視覚化することで、無意識にかけていたブレーキを外し、あなた本来の力を「解放」します。</div>
+                        <div class="course-desc">思考の癖・セルフイメージ・心の奥の願い。カードを使って「今の自分」を視覚化することで、無意識にかけていたブレーキを外し、あなた本来の力を「解放」します。</div>
                         <a href="card.html" class="btn-course">セッションを見る →</a>
                     </div>
                 </div>
@@ -1518,8 +491,7 @@
                     <div class="course-body">
                         <div class="course-title">サッカーサポート（準備中）</div>
                         <div class="course-catch">「個」の可能性を、データと心理学で最大化させる。</div>
-                        <div class="course-desc">
-                            パーソナルアナリスト・GK個別指導・メンタルトレーニング。世界基準の視点で、サッカーに情熱を注ぐ「個」の成長を加速させる特別なサポートを準備中です。</div>
+                        <div class="course-desc">パーソナルアナリスト・GK個別指導・メンタルトレーニング。世界基準の視点で、サッカーに情熱を注ぐ「個」の成長を加速させる特別なサポートを準備中です。</div>
                         <div class="btn-course-disabled">準備中 🔜</div>
                     </div>
                 </div>
@@ -1527,7 +499,6 @@
         </div>
     </section>
 
-    <!-- ラボ生の声 -->
     <section class="section bg-pale" id="voices">
         <div class="section-inner">
             <h2 class="section-title">「もっと早く出会いたかった。」</h2>
@@ -1536,15 +507,13 @@
                 <div class="voice-card">
                     <div class="voice-card-tag">【子育て】魔法の実況中継</div>
                     <div class="voice-card-title">イライラが消え、家族に笑顔が戻った「魔法の実況中継」</div>
-                    <p>毎日、同じことを言い続けても変わらない子どもの姿にイライラし、つい怒鳴ってしまう自分に自己嫌悪する日々でした。でもセミナーで「肯定的な実況中継」を教わり、玄関まで行けたことを認めるだけで、子どものやる気スイッチが自然に入るのを目の当たりにしました。小4の息子が自分から明日の準備をするように！「私が変われば、子どもが変わる」その言葉の意味を、初めて心で理解できた気がします。
-                    </p>
+                    <p>毎日、同じことを言い続けても変わらない子どもの姿にイライラし、つい怒鳴ってしまう自分に自己嫌悪する日々でした。でもセミナーで「肯定的な実況中継」を教わり、玄関まで行けたことを認めるだけで、子どものやる気スイッチが自然に入るのを目の当たりにしました。小4の息子が自分から明日の準備をするように！「私が変われば、子どもが変わる」その言葉の意味を、初めて心で理解できた気がします。</p>
                     <div class="voice-card-author">（30代・小学生ママ）</div>
                 </div>
                 <div class="voice-card">
                     <div class="voice-card-tag">【指導者】教えない指導</div>
                     <div class="voice-card-title">「教えない」ことで、選手が自ら輝き出したピッチ</div>
-                    <p>画一的な指導に限界を感じ、選手にイライラしてしまう日々が続いていました。30年の指導歴があるこぶさんの「タイプ別診断」は目からウロコでした。指示を出したくなる自分を抑え、背中をそっと押す。それだけで、選手たちが自ら作戦を立て、試合中に声を掛け合う姿に感動しました。昨日の試合では、今まで見たことがないような輝くプレーが連発。「教えない」ことが最高の指導だと、選手たちが証明してくれました。
-                    </p>
+                    <p>画一的な指導に限界を感じ、選手にイライラしてしまう日々が続いていました。30年の指導歴があるこぶさんの「タイプ別診断」は目からウロコでした。指示を出したくなる自分を抑え、背中をそっと押す。それだけで、選手たちが自ら作戦を立て、試合中に声を掛け合う姿に感動しました。昨日の試合では、今まで見たことがないような輝くプレーが連発。「教えない」ことが最高の指導だと、選手たちが証明してくれました。</p>
                     <div class="voice-card-author">（40代・少年サッカーコーチ）</div>
                 </div>
             </div>
@@ -1552,58 +521,34 @@
                 <div class="voice-short">
                     <div class="voice-short-title">コミュニケーションの改善</div>
                     <div class="before-after">
-                        <div class="ba-item">
-                            <span class="ba-label ba-before">Before</span><br>
-                            なぜ伝わらないの？と夫や子へのストレスが限界。
-                        </div>
-                        <div class="ba-item">
-                            <span class="ba-label ba-after">After</span><br>
-                            特性（VAK）の違いを知り、すれ違いが消えて会話がスムーズに！子育てだけでなく、職場の人間関係にも活かせています。
-                        </div>
+                        <div class="ba-item"><span class="ba-label ba-before">Before</span><br>なぜ伝わらないの？と夫や子へのストレスが限界。</div>
+                        <div class="ba-item"><span class="ba-label ba-after">After</span><br>特性（VAK）の違いを知り、すれ違いが消えて会話がスムーズに！子育てだけでなく、職場の人間関係にも活かせています。</div>
                         <div class="ba-author">（小学生ママ・支援職）</div>
                     </div>
                 </div>
                 <div class="voice-short">
                     <div class="voice-short-title">子どもの自立・やる気</div>
                     <div class="before-after">
-                        <div class="ba-item">
-                            <span class="ba-label ba-before">Before</span><br>
-                            何を言っても「やる気スイッチ」が入らない息子。サッカーの練習にも消極的で悩んでいました。
-                        </div>
-                        <div class="ba-item">
-                            <span class="ba-label ba-after">After</span><br>
-                            「自己決定」を促す声かけで、自ら進んで練習に向かう姿に。親子の絆も深まりました。
-                        </div>
+                        <div class="ba-item"><span class="ba-label ba-before">Before</span><br>何を言っても「やる気スイッチ」が入らない息子。サッカーの練習にも消極的で悩んでいました。</div>
+                        <div class="ba-item"><span class="ba-label ba-after">After</span><br>「自己決定」を促す声かけで、自ら進んで練習に向かう姿に。親子の絆も深まりました。</div>
                         <div class="ba-author">（少年サッカー少年の保護者）</div>
                     </div>
                 </div>
                 <div class="voice-short">
                     <div class="voice-short-title">心のブレーキ解放</div>
                     <div class="before-after">
-                        <div class="ba-item">
-                            <span class="ba-label ba-before">Before</span><br>
-                            やりたいことはあるのに、なぜか一歩が踏み出せない日々。
-                        </div>
-                        <div class="ba-item">
-                            <span class="ba-label ba-after">After</span><br>
-                            カードセッションで思考の癖を可視化。無意識にかけていたブレーキが外れ、迷いが消え、自分の力で歩き出せました。
-                        </div>
+                        <div class="ba-item"><span class="ba-label ba-before">Before</span><br>やりたいことはあるのに、なぜか一歩が踏み出せない日々。</div>
+                        <div class="ba-item"><span class="ba-label ba-after">After</span><br>カードセッションで思考の癖を可視化。無意識にかけていたブレーキが外れ、迷いが消え、自分の力で歩き出せました。</div>
                         <div class="ba-author">（30代・会社員）</div>
                     </div>
                 </div>
             </div>
             <div class="voice-closing">
-                <p>
-                    次は、あなたの番です。<br>
-                    景色が変わる準備は、できていますか？<br>
-                    一人で悩まなくて大丈夫。<br>
-                    <strong>魔法の扉を、一緒に開きましょう。</strong>
-                </p>
+                <p>次は、あなたの番です。<br>景色が変わる準備は、できていますか？<br>一人で悩まなくて大丈夫。<br><strong>魔法の扉を、一緒に開きましょう。</strong></p>
             </div>
         </div>
     </section>
 
-    <!-- ラボ通信 -->
     <section class="section bg-white" id="tsushin">
         <div class="section-inner">
             <h2 class="section-title">「魔法の声かけ」の日常と、その先にある想い。</h2>
@@ -1619,9 +564,9 @@
                 <div class="tsushin-card">
                     <div class="tsushin-icon">📱</div>
                     <div class="tsushin-title">最新のコツ（Instagram / Threads）</div>
-                   <div class="tsushin-desc">今日からすぐ試せる「魔法のフレーズ」を、画像や短い言葉で毎日お届け。</div>
-<br>
-<a href="https://www.threads.com/@kobu_kosodate_method" target="_blank" style="font-size: 15px; color: var(--yamabuki-deep); text-decoration: none;">Threadsを見る →</a>
+                    <div class="tsushin-desc">今日からすぐ試せる「魔法のフレーズ」を、画像や短い言葉で毎日お届け。</div>
+                    <br>
+                    <a href="https://www.threads.com/@kobu_kosodate_method" target="_blank" style="font-size: 15px; color: var(--yamabuki-deep); text-decoration: none;">Threadsを見る →</a>
                 </div>
                 <div class="tsushin-card">
                     <div class="tsushin-icon">🎙</div>
@@ -1638,14 +583,10 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <div class="cta-section">
         <h2 class="cta-main">今日が、景色が変わる日になる。</h2>
         <p class="cta-sub">こぶさんと、一緒に始めませんか？</p>
-        <p class="cta-desc">
-            親御さんも、指導者の方も、<br>
-            まずはここから繋がってください。
-        </p>
+        <p class="cta-desc">親御さんも、指導者の方も、<br>まずはここから繋がってください。</p>
         <div class="cta-btn-wrap">
             <a href="https://lin.ee/8YbanlW" target="_blank" class="btn-line">
                 <i class="fa-brands fa-line"></i>
@@ -1655,7 +596,6 @@
         </div>
     </div>
 
-    <!-- お問合わせ -->
     <section class="section bg-white" id="contact">
         <div class="section-inner">
             <h2 class="section-title" style="margin-bottom: 24px;">お問合わせ</h2>
@@ -1668,7 +608,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
             <div>
@@ -1715,7 +654,6 @@
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
         let autoSlide = setInterval(() => changeSlide(1), 5000);
-
         function goToSlide(n) {
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
@@ -1723,7 +661,6 @@
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
         }
-
         function changeSlide(dir) {
             let next = (currentSlide + dir + slides.length) % slides.length;
             goToSlide(next);
@@ -1731,7 +668,4 @@
             autoSlide = setInterval(() => changeSlide(1), 5000);
         }
     </script>
-
-
-
 </body></html>
