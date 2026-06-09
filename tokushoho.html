@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>特定商取引法に基づく表記｜こぶさんの人づくりラボ</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #E8A020;
+      --gold-light: #F5C96A;
+      --brown: #5C3D1E;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E9D0;
+      --text: #3A2A1A;
+      --text-light: #7A6A5A;
+    }
+
+    body {
+      font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ナビ */
+    header {
+      background: #fff;
+      border-bottom: 3px solid var(--gold);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brown);
+      text-decoration: none;
+    }
+    .logo em { color: var(--gold); font-style: normal; }
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .back-link:hover { background: var(--gold); color: #fff; }
+
+    /* ヒーロー */
+    .hero {
+      background: linear-gradient(135deg, var(--cream-dark) 0%, var(--cream) 100%);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+    .hero .label {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--brown);
+      font-weight: 900;
+    }
+
+    /* メイン */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .table-wrap {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(92,61,30,0.08);
+      border: 1px solid var(--cream-dark);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    tr {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    tr:last-child { border-bottom: none; }
+
+    th {
+      background: var(--cream-dark);
+      color: var(--brown);
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 18px 24px;
+      text-align: left;
+      vertical-align: top;
+      width: 200px;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 18px 24px;
+      font-size: 0.95rem;
+      color: var(--text);
+      vertical-align: top;
+    }
+
+    .note {
+      margin-top: 32px;
+      background: var(--cream-dark);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    /* フッター */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--gold-light); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      th { width: 120px; font-size: 0.82rem; padding: 14px 12px; }
+      td { font-size: 0.88rem; padding: 14px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="https://kobu17.github.io/kobu-lab/index.html"><em>こぶさん</em>の人づくりラボ</a>
+  <a class="back-link" href="https://kobu17.github.io/kobu-lab/index.html">トップへ戻る</a>
+</header>
+
+<div class="hero">
+  <div class="label">LEGAL</div>
+  <h1>特定商取引法に基づく表記</h1>
+</div>
+
+<main>
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th>販売事業者</th>
+        <td>こぶさんの人づくりラボ</td>
+      </tr>
+      <tr>
+        <th>代表者名</th>
+        <td>小鮒 正樹</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>埼玉県<br>※請求があった場合には遅滞なく開示いたします。</td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td>※請求があった場合には遅滞なく開示いたします。</td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td>riparare.kobu@gmail.com</td>
+      </tr>
+      <tr>
+        <th>販売価格</th>
+        <td>各サービスページに記載の価格（税込）</td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td>各プラットフォームの規定に準じます</td>
+      </tr>
+      <tr>
+        <th>支払時期</th>
+        <td>お申し込み時にお支払いいただきます</td>
+      </tr>
+      <tr>
+        <th>サービス提供時期</th>
+        <td>お申し込み後、日程調整の上ご提供いたします</td>
+      </tr>
+      <tr>
+        <th>返品・キャンセル</th>
+        <td>サービスの性質上、お申し込み後のキャンセル・返金はお受けできません。ご不明な点はお申し込み前にお問い合わせください。</td>
+      </tr>
+      <tr>
+        <th>動作環境</th>
+        <td>オンラインサービスはZoomを使用します。安定したインターネット環境とZoomのご利用が可能な端末をご用意ください。</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note">
+    ご不明な点がございましたら、お気軽に <a href="mailto:riparare.kobu@gmail.com">riparare.kobu@gmail.com</a> までお問い合わせください。
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 こぶさんの人づくりラボ. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
